@@ -1,0 +1,25 @@
+<!--Header Starts-->
+<body>
+	<table style="width: 600px;margin: 0;padding: 0;border: none;border-spacing: 0;border-collapse: collapse;font-family:'Helvetica', 'arial', sans-serif; color: #333;" align="center">
+		<tr>
+			<td style="background:#fcfcfc;border: 1px solid #ccc;border-bottom: 3px solid #390;padding: 15px;margin: 0;"><img src="<%= ENV['SERVER_PATH'] %>/assets/brand.png" alt="fnp gift | gifts, anywhere anytime..."></td>
+		</tr>
+		<tr>
+			<td style="background:#fff;border-left: 1px solid #ccc;border-right: 1px solid #ccc;border-top: none;border-bottom: 1px solid #ccc;padding: 20px;margin: 0;">
+		<!--Header Ends-->
+		<%= yield %>
+		<!--Footer-->
+			<p style="font-size: 14px;color: #666;font-weight: 300;"><strong>Cheers!!!</strong><br/>
+				basic_module team
+		</p>
+		
+		</td>
+		</tr>
+		<tr>
+		<td style="background:#fcfcfc;border: 1px solid #ccc;border-top: 3px solid #390;padding: 15px;margin: 0;">
+		<p style="font-size: 12px;color: #666;font-weight: 300;"><strong>BasicModule</strong> has sent this e-mail to you because it was necessary or you opted for this. Add us to your contacts to avoid sending this email to spam. You can change your notification preferences at www.basic_module.com.</p>
+		</td>
+		</tr>
+	</table>
+</body>
+<!--Footer Ends-->

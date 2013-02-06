@@ -1,0 +1,13 @@
+<h1 style="font-size: 18px;">Hi <%= @recipient.name %>,</h1>
+<p style="font-size: 14px;color: #444;font-weight: 300;line-height: 18px;margin-bottom: 10px;">
+	Welcome to basic_module!
+</p>
+<p style="font-size: 14px;color: #444;font-weight: 300;line-height: 18px;margin-bottom: 10px;">
+Your account has been created, please go ahead and start sending physical and virtual gifts to your loved ones.
+</p>
+<p style="font-size: 14px;color: #444;font-weight: 300;line-height: 18px;margin-bottom: 10px;">
+<% unless @random_password.blank? %>
+	Your Password is <strong><%= @random_password %></strong><br/>
+	Please change your password when you login!
+<% end %>
+</p>
