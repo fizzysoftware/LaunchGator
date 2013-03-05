@@ -1,0 +1,65 @@
+<!-- Footer Wrapper -->
+   	<div class="footwrap">
+    	<!-- Footer Content -->
+    	<div class="footer">
+            <div class="footnav">
+            	<h1>Launch Gator</h1>
+                <ul>
+                	<li><%= link_to 'Home', root_path %></li>
+                	  <li><%= link_to "About", '#' %></li>
+                    <li><%= link_to "Contact Us", '#' %></li>
+                    <br class="clearfix"/>
+                </ul>
+            </div>
+            <div class="footnav">
+            	<h1>Links</h1>
+                <ul>
+					  <li><%= link_to "Privacy",'#'  %></li>
+              		<li><%= link_to "Terms", '#' %></li>
+              		<br class="clearfix"/>
+                </ul>
+            </div>
+            <div class="footnav">
+            	<h1>Related</h1>
+                <ul>
+					<li><%= link_to "PlusRev", 'http://www.plusrev.com',:target=>'_blank' %></li>
+                	<li><%= link_to "Pintile", 'http://www.pintile.com',:target=>'_blank' %></li>
+					<li><%= link_to "TheDealKart", 'http://www.thedealkart.com',:target=>'_blank' %></li>
+                    <br class="clearfix"/>
+                </ul>
+            </div>
+            <div class="footnav">
+            	<h1>Social</h1>
+                <ul>
+                	<li><a href="http://www.facebook.com/pages/Fizzy-Software/182961565160614" target="_blank">Facebook</a></li>
+                    <li><a href="http://twitter.com/fizzysoftware" target="_blank">Twitter</a></li>
+                    <li><a href="http://www.linkedin.com/company/2149207" target="_blank">LinkedIn</a></li>                   <br class="clearfix"/>
+                </ul>
+            </div>		
+	            	<div class="company">
+	            	<a href="http://www.fizzysoftware.com" target="_blank"><img src="/assets/fizzy.png" alt="A Product of Fizzy Software"></a>
+                    <p>Copyright &copy; <%= Time.now.strftime("20%y")%>,&nbsp;<%= link_to "Fizzy Software", "http://fizzysoftware.com",:target=>'_blank'%></p>
+	            </div>
+				
+            <!-- Footer Content Ends -->
+    </div>
+  
+    <!-- Footer Wrapper Ends -->
+	
+	<!-- Google Analytics Starts-->
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-24476396-12']);
+	  _gaq.push(['_setDomainName', 'deskgator.com']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	<!-- Google Analytics Ends-->
+	

@@ -23,9 +23,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def create
+    debugger
+    if params[:home_page]
+       @user = User.find_by_email(params[:user][:email])
+       if @user
+          @title = "Launchgator - Enter your login details"
+          redirect_to new_user_session_path
+       else 
+         @user = User.new(params[:user])   
+         @title = "Launchgator - Create an account"
+         redirect_to new_user_registration_path
+       end  
+    end 
+  end
 
-  def welcome
-
+  def home
 
   end
 

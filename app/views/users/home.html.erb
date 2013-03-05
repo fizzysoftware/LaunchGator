@@ -1,0 +1,26 @@
+<div id="welcome_form" class="">
+	<h1>
+		<span class="launching">
+			Create a Viral Launching Soon page
+		</span>
+		<span class="orange">
+			in minutes for FREE!
+		</span>
+	</h1>
+	<p align="center">
+		Enter your email address to get started
+	</p>
+	<p id="error_message" align="center" style="display:none">
+
+	</p>
+	<div class="clear" id="form">
+		<%= form_for @user, :as => :user , :url => '' do |f| %>
+			<%= f.text_field :email ,:class=>"txt_small home_email", :placeholder=>'yourname@yourmail.com' %>
+			 <%= hidden_field_tag 'home_page', 'home_page' %> 	    
+			<%= submit_tag "Go" ,:class => "greenbutton" %>
+		<% end %>
+	</div>
+	<%#= hidden_field_tag 'site', @site.id %>
+	<%#= hidden_field_tag 'referral_code', params[:referral_code] %> 
+</p>
+</div>

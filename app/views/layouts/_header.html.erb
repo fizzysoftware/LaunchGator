@@ -1,0 +1,19 @@
+<!-- Head Wrapper -->
+<div class="headwrap" id="home">      
+	<!-- Head Content -->
+	<div class="head">
+		<%= link_to (image_tag "logo.png",  :class=>'logo' ) , root_path %>
+		<!-- Main Navigation -->
+		<ul class="mainnav">
+			<% if !user_signed_in? %>	
+				<li><%= link_to "Login", new_user_session_path %></li>
+				<li><%= link_to "Sign Up", new_user_registration_path,:class => "signupbtn" %></li>
+			<% else %>
+				<%= link_to "Logout", destroy_user_session_path %></li>
+			<% end %>
+		</ul>
+		<!-- Main Navigation Ends-->
+	</div>
+	<!-- Head Content Ends -->
+</div>
+<!-- Head Wrapper Ends-->

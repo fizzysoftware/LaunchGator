@@ -6,16 +6,16 @@ LaunchGator::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :users, :only => [:show,:edit,:update] do
+  resources :users, :only => [:show,:edit,:update,:create] do
     collection do
-      get 'welcome'
+      get 'home'
     end    
     
   end
     
   match 'auth/failure', to: redirect('/')
   
-  root :to => 'users#welcome'
+  root :to => 'users#home'
   
   
   # The priority is based upon order of creation:
