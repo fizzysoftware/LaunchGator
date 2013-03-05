@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-BasicModule::Application.load_tasks
+LaunchGator::Application.load_tasks

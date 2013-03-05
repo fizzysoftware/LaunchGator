@@ -1,7 +1,7 @@
 class Notifier < ActionMailer::Base
-  default :from => "support@basic_module.com"
+  default :from => "support@launch_gator.com"
 
-  def welcome_mail(recipient,random_password = "")
+  def welcome(recipient,random_password = "")
     @recipient = recipient
     @random_password = random_password
     mail(:to => @recipient.email, :subject => "Welcome to Gifts")  

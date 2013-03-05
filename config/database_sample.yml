@@ -9,7 +9,7 @@ development:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: basic_module_development
+  database: launch_gator_development
   pool: 5
   username: root
   password:
@@ -22,7 +22,7 @@ test:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: basic_module_test
+  database: launch_gator_test
   pool: 5
   username: root
   password:
@@ -32,7 +32,7 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: basic_module_production
+  database: launch_gator_production
   pool: 5
   username: root
   password: 
@@ -42,7 +42,7 @@ staging:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: basic_module_staging
+  database: launch_gator_staging
   pool: 5
   username: root
   password: 

@@ -13,9 +13,9 @@
 #
 
 class User < ActiveRecord::Base
-  include ActAsCountable
-  include UserAccountSetup
-  include Reminders
+  #include ActAsCountable
+  #include UserAccountSetup
+  #include Reminders
   
   # Include default devise modules. Others available are:
   #

@@ -1,4 +1,4 @@
-BasicModule::Application.routes.draw do
+LaunchGator::Application.routes.draw do
   
   devise_for :users, controllers: { omniauth_callbacks: "sessions" }
 

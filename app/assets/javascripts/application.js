@@ -12,11 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+
 //= require jquery-ui
-//= require time.ago
-//= require rails.valdiations
-//= require rails.valdiations.simple_form
+
+
 
 $(function(){
 	$('#notice').delay(3000).slideUp(200);
