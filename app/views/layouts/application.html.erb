@@ -15,21 +15,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
+		<script type="text/javascript">
+			$(function(){
+				var bodyheight = $(window).height();
+				$('.launchbody').css({'min-height': bodyheight });
+				$('.features').delay(7000).fadeIn(300);
+				$('#notice').delay(3000).slideUp(200);
+				$('#error').delay(3000).slideUp(200);
+			});
+	</script>
 		<%= render "layouts/header" %>	
 		
+		<div class="launchbody">
 		<div id="wrapper" >	
-					<% if flash[:notice] %>
-					<div id='notice'><%= flash[:notice].html_safe %></div>
-					<% end %>
+			<% if flash[:notice] %>
+				<div id='notice'><%= flash[:notice].html_safe %></div>
+			<% end %>
              		
-					<% if flash[:error] %>
-					<div id='error'><%= flash[:error].html_safe %></div>
-					<% end %>
+			<% if flash[:error] %>
+				<div id='error'><%= flash[:error].html_safe %></div>
+			<% end %>
 
-					<%= yield %>
+			<%= yield %>
 		</div>
-
-		<% if params[:controller] == "sessions" and params[:action] == "home" %>
+	</div>
+		<% if params[:controller] == "users" and params[:action] == "home" %>
 			<!--Features Section-->
 			<div class="features">		
 			<h1>THINGS YOU CAN DO WITH LAUNCH GATOR</h1>

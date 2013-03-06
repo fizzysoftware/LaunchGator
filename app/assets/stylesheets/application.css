@@ -1209,7 +1209,7 @@ div#wrapper.total_white input[type="text"], div#wrapper.total_white input[type="
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	padding: 30px;
-	display: none;
+	/*display: none;*/
 	overflow: hidden;
 }
 .features > h1{

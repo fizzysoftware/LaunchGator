@@ -1,5 +1,8 @@
 LaunchGator::Application.routes.draw do
   
+  resources :sites
+
+
   devise_for :users, controllers: { omniauth_callbacks: "sessions" }
 
   ActiveAdmin.routes(self)
