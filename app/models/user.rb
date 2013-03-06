@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
          :token_authenticatable, :confirmable, :timeoutable , :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :name
-  validates_presence_of :name, :email
+  attr_accessible :email, :password, :full_name
+  validates_presence_of :full_name, :email
   validates :email, :email_format => true
  # validates :username, :format => { :with => /^(?!_)(?:[a-z0-9]_?)*[a-z](?:_?[a-z0-9])*(?<!_)$/i }, :uniqueness => true
   has_one :image, :as => :imageable, :order => "created_at DESC"
@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.name = auth.info.name
+      user.full_name = auth.info.name
       user.email = auth.info.email
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)

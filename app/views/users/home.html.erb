@@ -14,7 +14,7 @@
 
 	</p>
 	<div class="clear" id="form">
-		<%= form_for @user, :as => :user , :url => '' do |f| %>
+		<%= form_for @user, :as => :user , :url => check_user_path do |f| %>
 			<%= f.text_field :email ,:class=>"txt_small home_email", :placeholder=>'yourname@yourmail.com' %>
 			 <%= hidden_field_tag 'home_page', 'home_page' %> 	    
 			<%= submit_tag "Go" ,:class => "greenbutton" %>

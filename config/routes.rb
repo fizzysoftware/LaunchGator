@@ -12,6 +12,9 @@ LaunchGator::Application.routes.draw do
     end    
     
   end
+
+  match 'check_user' => 'users#check_user', :as => :check_user
+  match 'terms'=>'pages#terms',:as=>:terms
     
   match 'auth/failure', to: redirect('/')
   
