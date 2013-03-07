@@ -1,0 +1,111 @@
+<p align="center">
+	<% if !@site.image.id.nil? and !@site.image.logo_file_name.nil? %>
+	<%= link_to image_tag(@site.image.logo.url(:medium)), root_url %>
+	<% elsif !@site.logo.nil? %>
+	<h1 class="largeheader" style="color:<%= @site.name_color %>!important">
+		<%=  @site.logo  %>
+	</h1>
+	<% else %>
+	<h1 class="largeheader" style="color:<%= @site.name_color %>!important">
+		<%=  @site.name  %>
+	</h1>
+	<% end %>  
+
+	<p class="tagline" style="color:<%= @site.tagline_color %>!important">
+		<%= @site.tagline %>
+	</p>
+
+</p>
+
+<div id="welcome_form" >
+	<p class="site_description" style="color:<%= @site.description_color %>!important"> 
+		<%= @site.description %>
+	</p>
+	<p align="center" class="punchline" style="color:<%= @site.description_color %>">
+		Coming Soon! Enter your email to join our invite list.
+	</p>
+	<div class="clear" id="form">
+		<input type="text" name="email" id="invite_email" placeholder="yourname@yourmail.com "/>
+		<%= link_to "Go",  "#",:class=>"greenbutton topmarginfix" %>
+	</div>
+	<p style="float:right; margin-top:5px;">
+		<span style="font-size:12px;font-weight: 700;color:<%= @site.description_color %>">
+			Powered by
+		</span>
+		<a href="http://launch.deskgator.com">
+			<img src="/assets/powered_logo.png" style="position: relative;top: 5px;margin-right: 6px;" alt="" />
+		</a>
+	</p>
+</div>
+
+<div id="social_networks" style="margin-top:20px;" class="<%= 'hide' if @visited.nil? %>">
+	<%  if @visited.nil? %>
+	<p>
+		<h1 class="header_text patternhead" style="font-size: 16px;">
+			Thanks! Want to get an early invitation?
+		</h1>
+	</p>
+	<% else %>
+	<div>
+		<%= @visited.sharing_instructions %>
+	</div>
+	<div>
+		<h1 class="header_text">
+			Welcome Back!
+		</h1>
+		<div class="stats">
+			<strong>
+				Live Stats
+			</strong>
+			<%= @visited.views_count %> Views,  
+			<%= @visited.invites_count %> Signups
+		</div>
+	</div>
+	<% end %>
+	<div class="sharing_description">
+		<%= @site.sharing_instructions %>
+	</div>
+	<br/>
+	<br/>
+	<div>	
+		<p style="font-size: 15px;text-align: center;">To share with your friends, click 'Recommend' and 'Tweet':</p>
+		<div id="twitter-like" class="clear" style="width:150px;float:left;margin-left:50px;margin-top:20px;">
+			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= @site.url %>" data-text="<%= @site.twitter_message %>" data-count="horizontal" data-via="<%= @site.twitter %>">Tweet</a>
+			<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		</div>
+
+		<div id="facebook-like" style="margin-top:20px;">
+			<iframe src="http://www.facebook.com/plugins/like.php?href=<%= @site.url %>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden;  width:95px; height:30px;" allowTransparency="true"></iframe> 
+		</div>	
+	</div>
+
+	<div class="<%= 'hide' if @visited.nil? %>" id='unique_code' style="margin-top:5px;">
+		<br/>
+		<span>Or copy and paste the following link to share wherever you want!</span>
+		<br/><br/>
+	</div>
+	<div>	
+		<input type="text" id="unique_code_textbox" class="home_page_text_box_1" value="<%= @site.url %>"/>
+	</div>
+</div>
+
+
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+
+});
+
+$('.greenbutton').click(function() {
+	$('#welcome_form').hide();
+	$('#social_networks').show();
+	$("#unique_code").show();
+	$('#unique_code_textbox').val(response);
+});
+
+$('#invite_email').keydown(function(e) {
+	if (e.keyCode == 13) {
+		$('#notify_me').click();
+	}
+});
+</script>

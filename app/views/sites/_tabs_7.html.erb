@@ -1,0 +1,33 @@
+<p>
+	<%= f.label :name_color %>
+</p>
+<p>
+	<%= f.text_field :name_color,  :class=>"txt_small" %>
+	<span class="hint_1">Will appear at the top of your site (unless you upload a logo) </span>
+</p>
+<p>
+	<%= f.label :tagline_color %>
+</p>
+<p>
+	<%= f.text_field :tagline_color,  :class=>"txt_small" %>
+	<span class="hint_1">Will appear at the top of your site (unless you upload a logo) </span>
+</p>
+<p>
+	<%= f.label :description_color %>
+</p>
+<p>
+	<%= f.text_field :description_color,  :class=>"txt_small" %>
+	<span class="hint_1">Will appear at the top of your site (unless you upload a logo) </span>
+</p>
+<p>
+	<%= f.label :box_color , "Box Color" %>
+</p>
+<p>  
+	<%= f.text_field :box_color,  :class=>"txt_small" %>
+	<span class="hint_1"> What color you want as background for site block?</span>
+</p>
+<div class="site_description_color" style="display:none"></div>
+<div class="site_tagline_color" style="display:none"></div>
+<div class="site_name_color" style="display:none"></div>
+<div class="site_box_color" style="display:none"></div>
+<%= hidden_field_tag 'tab', '' %>		

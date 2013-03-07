@@ -13,8 +13,13 @@
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	<body>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("body").ezBgResize({
+					img : "<%= @background_image %>", // Required.
+				});
+			});
+		</script>
 		<script type="text/javascript">
 			$(function(){
 				var bodyheight = $(window).height();
@@ -24,10 +29,21 @@
 				$('#error').delay(3000).slideUp(200);
 			});
 	</script>
+	</head>
+	<body>
+		
 		<%= render "layouts/header" %>	
 		
 		<div class="launchbody">
-		<div id="wrapper" >	
+			<% if params[:controller] == "users" && params[:action] == "home" && @site.id.to_i != 1 %>
+				<div id="wrapper" class="<%= @site.box_alignment %>" style="background-color:<%= @site.box_color %>!important">		
+			<% elsif (params[:controller] == "invites" ||params[:controller] == "sites" || params[:controller] == "users") and params[:action] == "index" %>
+				<div id="wrapper" class="sites_invite">	
+			<% elsif params[:controller] == "sites" and (params[:action] == "edit" || params[:action] == 'update') %>
+				<div>
+			<% else %>
+				<div id="wrapper" >	
+			<% end %>
 			<% if flash[:notice] %>
 				<div id='notice'><%= flash[:notice].html_safe %></div>
 			<% end %>
@@ -37,42 +53,21 @@
 			<% end %>
 
 			<%= yield %>
+			</div>
+
+			<% if params[:controller] == "users" and params[:action] == "home" %>
+				<%= render "layouts/features" %>	
+			<% end %>
 		</div>
-	</div>
-		<% if params[:controller] == "users" and params[:action] == "home" %>
-			<!--Features Section-->
-			<div class="features">		
-			<h1>THINGS YOU CAN DO WITH LAUNCH GATOR</h1>
-			<!-- Left Img Container -->
-			<div class="highlight">
-				<%= image_tag "/assets/create.png", alt:"Create a page" %>
-				<div class="highlight_content">
-					<h1>Create &amp; Customize</h1>
-					<p>Create awesome coming soon pages for your upcoming website. Log In and add your website information. Add custom colors and backgrounds that highlight your service.</p>
-				</div>
-			</div>
-			<!-- Left Img Container Ends-->
-			<!-- Left Img Container -->
-			<div class="highlight">
-				<div class="highlight_content">
-					<h1>Share &amp; Engage</h1>
-					<p>Share your landing page with your friends via social networks or emails and spread the word. Gather valuable feedback and bring your website to limelight.</p>
-				</div>
-				<%= image_tag "/assets/share.png", alt:"Share page" %>
-			</div>
-			<!-- Left Img Container Ends-->
-			<!-- Right Img Container -->
-			<div class="highlight">
-				<%= image_tag "/assets/connect.png", alt:"Connect" %>
-				<div class="highlight_content">
-					<h1>Understand &amp; Connect</h1>
-					<p>Understand the kind of audience that is visiting your landing page and connect with them to share and exchange valuable ideas that can be fruitful for your actual website.</p>
-				</div>
-			</div>
-			<!-- Right Img Container Ends-->
-			</div>
-			<!--Features Section-->
-		<% end %>
-		<%= render "layouts/footer" %>	
+
+		<script>
+			$(function(){
+				$( "#site_wrapper , #site_builder").draggable();
+				
+			});
+		</script>
+		<% if (@site.id == 1 || (params[:action] != 'home' and @site.id == 1 )) && (@site.id == 1 && params[:action] != 'edit') %>
+			<%= render "layouts/footer" %>	
+		<% end %>	
 	</body>
-	</html>
+</html>

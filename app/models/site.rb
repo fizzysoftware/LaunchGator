@@ -1,5 +1,6 @@
+require 'domainatrix'
 class Site < ActiveRecord::Base
-  attr_accessible :name, :user_id, :url,:tagline, :description, :twitter, :facebook, :blog, :twitter_message, :google_analytics_code, :welcome_email, :email, :domain_name, :clicks, :logo, :box_alignment, :box_visibility, :sharing_instructions, :email_subject, :business_name, :email_sender, :email_sender_name, :box_color, :name_color, :tagline_color, :description_color, :address
+  attr_accessible :name, :user_id, :url,:tagline, :description, :twitter, :facebook, :blog, :twitter_message, :google_analytics_code, :welcome_email, :email, :domain_name, :clicks, :logo, :box_alignment, :box_visibility, :sharing_instructions, :email_subject, :business_name, :email_sender, :email_sender_name, :box_color, :name_color, :tagline_color, :description_color, :address,:image_attributes
 
   has_one :image
   belongs_to :user
@@ -14,5 +15,11 @@ class Site < ActiveRecord::Base
    
   validates_format_of :url, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix,
  	:unless => lambda{|a| a.url.blank?}
+
+ 	def parse_domain_name_from_url
+     	url = Domainatrix.parse(self.url)
+     	self.domain_name = url.domain
+     	self.save
+  	end 
 
 end

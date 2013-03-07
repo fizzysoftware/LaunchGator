@@ -12,7 +12,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'bootstrap-sass', '~> 2.2.2.0'
+#gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'jquery-rails'
 gem 'json'
 gem 'smusher'
@@ -38,6 +38,10 @@ gem 'devise-encryptable'
 gem 'chronic'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'highline'
+gem 'uuid'
+gem "goshortener"
+gem 'domainatrix'
 
 
 group :development, :test do
@@ -55,7 +59,7 @@ group :development, :test do
   gem 'lol_dba'
   gem 'thin'
   gem 'quiet_assets'
-  gem 'bullet'
+  #gem 'bullet'
   gem 'railroady'
   gem 'rails-footnotes', '>= 3.7.5.rc4'
 end

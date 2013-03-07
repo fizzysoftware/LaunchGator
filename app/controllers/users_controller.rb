@@ -33,7 +33,12 @@ class UsersController < ApplicationController
     end
 
     def home
-        @user= User.new
+        if user_signed_in? 
+            @user = current_user
+            @site = @user.site
+            redirect_to edit_site_path(@site)
+            # @visited = site_visited_or_not(1)
+        end
     end
 
 end

@@ -1,6 +1,11 @@
 LaunchGator::Application.routes.draw do
   
-  resources :sites
+  resources :sites, :only=>[:index,:edit,:update]   do
+    member do
+      get 'view'
+    end  
+    #resources :invites,:only=>[:index]
+  end  
 
 
   devise_for :users, controllers: { omniauth_callbacks: "sessions" }

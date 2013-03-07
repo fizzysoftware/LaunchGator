@@ -1,0 +1,33 @@
+<p>
+	<%= f.label :name %>
+</p>
+<p>
+	<%= f.text_field :name,  :class=>"txt_small" %>
+	<span class="hint_1">Will appear at the top of your site (unless you upload a logo) </span>
+</p>
+<p>
+	<%= f.label :url , "URL" %>
+</p>
+<p>    
+	<%= f.text_field :url ,  :class=>"txt_small" %>
+	<span class="hint_1">The URL for your page, i.e. http://www.mydomain.com. </span>
+</p>
+<p>
+	<%= f.label :tagline %>
+</p>
+<p> <%= f.text_field :tagline ,  :class=>"txt_small" %>
+	<span class="hint_1">What makes your site exciting? </span>
+</p>
+<p>
+	<%= f.label :description %>
+</p>
+<p><%= f.text_area :description %>
+	<span class="hint_1"> More about the site, sometimes less is more.</span>
+</p>
+
+<p>
+	<%= f.label :email %>
+</p>
+<p><%= f.text_field :email ,  :class=>"txt_small" %>
+	<span class="hint_1">Contact mail will be sent here </span>
+</p>

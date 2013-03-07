@@ -1,0 +1,31 @@
+<p>
+	<%= f.label :email_sender_name , "Sender name" %>
+</p>
+<p>
+	<%= f.text_field :email_sender_name ,  :class=>"txt_small" %>
+	<span class="hint_1">Send email as </span>
+</p>
+
+<p>
+	<%= f.label :email_sender , "Sender email address"%> 
+</p>
+<p>
+	<%= f.text_field :email_sender ,  :class=>"txt_small" %>
+	<span class="hint_1"> Email will be sent from this address</span>
+</p>
+
+<p>
+	<%= f.label :email_subject %>
+</p>
+<p>
+	<%= f.text_field :email_subject ,  :class=>"txt_small" %>
+	<span class="hint_1">Subject line of the email that will be sent to users</span>
+</p>
+
+<p>
+	<%= f.label :welcome_email , "Email body"%>
+</p>
+<p>
+	<%= f.text_area :welcome_email ,  :class=>"txt_small" %>
+	<span class="hint_1"> Email content that will be sent to users</span>
+</p>

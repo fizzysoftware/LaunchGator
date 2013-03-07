@@ -1,0 +1,103 @@
+<%= f.fields_for :image do |a_d| %>
+<p>
+	<label>Logo</label>
+
+</p>
+
+<% if !a_d.object.nil? and !a_d.object.logo_file_name.nil? %>
+<input type="radio" name="logo" id="logo_image" checked><label for="logo_image" class="radiolabels">Image</label>
+<input type="radio" name="logo" id="logo_text"><label for="logo_text" class="radiolabels">Text</label>
+<span class="hint_1" style="margin-top:7px;" >
+	<strong style="font-weight:700;color:#333">Current Logo</strong> : <%= a_d.object.logo_file_name %>
+</span>   
+<div class="logo_image">
+	<p><%= a_d.file_field :logo,  :class=>"txt_small" %>
+		<input name="logo_destroy" id="logo_destroy" type="checkbox" style="display:none">	    
+		<span class="hint_1">Company Logo. </span>
+	</p>
+</div>
+<div class="logo_text" style="display:none;">
+	<p><%= f.text_field :logo,  :class=>"txt_small" %>
+		<span class="hint_1">Company Logo in text. </span>
+	</p>
+</div> 
+<% else %>
+<input type="radio" name="logo" id="logo_image" ><label for="logo_image" class="radiolabels">Image</label>   
+<input type="radio" name="logo" id="logo_text" checked><label for="logo_text" class="radiolabels">Text</label>
+<div class="logo_image" style="display:none;">
+	<p><%= a_d.file_field :logo,  :class=>"txt_small" %>
+		<input name="logo_destroy" id="logo_destroy" type="checkbox" style="display:none">	    
+		<span class="hint_1">Company Logo. </span>
+	</p>
+</div>
+<div class="logo_text" >
+	<p><%= f.text_field :logo,  :class=>"txt_small" %>
+		<span class="hint_1">Company Logo in text. </span>
+	</p>
+</div>
+<% end %>  
+
+
+
+<% if !a_d.object.nil? and !a_d.object.background_file_name.nil? %> 
+<p>
+	<%= a_d.label :background , "Background Image"%>
+	<input type="radio" name="background" id="background_default"><label for="background_default"  class="radiolabels">Default</label>   
+	<input type="radio" name="background" id="background_custom" checked><label for="background_custom" class="radiolabels">Custom</label>
+	<span class="hint_1" style="margin-top:7px;" >
+		<strong style="font-weight:700;color:#333">Current Background</strong> : <%= a_d.object.background_file_name %>
+	</span>
+</p>
+<p class="background_fields">
+	<%= a_d.file_field :background,  :class=>"txt_small" %>
+	<input name="background_destroy" id="background_destroy" type="checkbox" style="display:none">	    
+	<span class="hint_1">Background.</span>
+</p> 
+<% else %>
+<p>
+	<%= a_d.label :background , "Background Image"%>
+	<input type="radio" name="background" id="background_default" checked><label for="background_default"  class="radiolabels">Default</label>   
+	<input type="radio" name="background" id="background_custom"><label for="background_custom" class="radiolabels">Custom</label>
+	<span class="hint_1" style="margin-top:7px;" >
+		<strong style="font-weight:700;color:#333">Current Background</strong> : <%= a_d.object.background_file_name %>
+	</span>
+</p>
+<p class="background_fields" syle="display:none">
+	<%= a_d.file_field :background,  :class=>"txt_small" %>
+	<input name="background_destroy" id="background_destroy" type="checkbox" style="display:none">	    
+	<span class="hint_1">Background.</span>
+</p>
+<% end%>
+
+<% end %>
+<p>
+<%= f.label :box_alignment , "Box Alignment"%>
+</p>
+<p>
+	<% site_box_alignment = {'Center'=>'center','Top-Left'=>'topleft','Top-Right'=>'topright','Bottom-Left'=>'bottomleft','Bottom-Right'=>'bottomright'} %>
+	<%= f.select :box_alignment, site_box_alignment %>
+	<span class="hint_1"> Where you want to place your site block?</span>
+</p>
+
+<script>
+$(function() {
+	$( "#logo_image").live('click',function(){
+		$('.logo_image').show();
+		$('.logo_text').hide();
+		$('#logo_destroy').attr('checked',false);
+	});
+	$( "#logo_text").live('click',function(){
+		$('.logo_text').show();
+		$('.logo_image').hide();
+		$('#logo_destroy').attr('checked',true);
+	}); 
+	$( "#background_custom").live('click',function(){
+		$('.background_fields').show();
+		$('#background_destroy').attr('checked',false);
+	});
+	$( "#background_default").live('click',function(){
+		$('.background_fields').hide();
+		$('#background_destroy').attr('checked',true);
+	});
+});
+</script>

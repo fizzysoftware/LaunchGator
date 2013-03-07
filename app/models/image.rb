@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
+  attr_accessible :logo,:background
   belongs_to :site
   has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>",:facebook_meta_tag => "200x200#" }
   has_attached_file :background 

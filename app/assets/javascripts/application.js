@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ez-bg-resize
+//= require jquery-ui
 
 
 
@@ -22,10 +24,10 @@ $(function(){
 });
 
 
-$(document).ready(function () {
-      $('.dropdown-toggle').dropdown();
-});
+// $(document).ready(function () {
+//       $('.dropdown-toggle').dropdown();
+// });
  
-jQuery(document).ready(function() {
-  jQuery("abbr.timeago").timeago();
-});
+// jQuery(document).ready(function() {
+//   jQuery("abbr.timeago").timeago();
+// });
