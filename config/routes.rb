@@ -27,6 +27,10 @@ LaunchGator::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
   
   root :to => 'users#home'
+
+  constraints(Subdomain) do
+    root :to => 'sites#view'
+  end
   
   
   # The priority is based upon order of creation:
