@@ -61,5 +61,5 @@ group :development, :test do
   gem 'quiet_assets'
   #gem 'bullet'
   gem 'railroady'
-  gem 'rails-footnotes', '>= 3.7.5.rc4'
+  #gem 'rails-footnotes', '>= 3.7.5.rc4'
 end

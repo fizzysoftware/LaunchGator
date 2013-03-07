@@ -38,7 +38,18 @@ class UsersController < ApplicationController
             @site = @user.site
             redirect_to edit_site_path(@site)
             # @visited = site_visited_or_not(1)
+           else
+             @site.update_attribute(:clicks, @site.clicks+1)   
         end
+
+    #     unless session[:user_id].nil? 
+    #     @site = @user.site
+    #     redirect_to edit_site_path(@site)
+    #     @visited = site_visited_or_not(1)
+    # else
+    #   @site.update_attribute(:clicks, @site.clicks+1)
+    #   DailyReport.daily_view_counter(@site.id) 
+    # end
     end
 
 end

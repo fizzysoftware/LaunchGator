@@ -33,6 +33,7 @@ class SitesController < ApplicationController
   end  
 
   def view 
+    debugger
     @site.update_attribute(:clicks, @site.clicks+1)
     #@visited = site_visited_or_not(@site.id)
     #@invite = Invite.new
