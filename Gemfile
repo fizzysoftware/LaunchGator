@@ -42,6 +42,8 @@ gem 'highline'
 gem 'uuid'
 gem "goshortener"
 gem 'domainatrix'
+gem 'redcarpet'
+gem 'albino'
 
 
 group :development, :test do

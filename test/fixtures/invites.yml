@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  site_id: 1
+  unique_code: MyString
+  invites_count: 1
+  inviter_id: 1
+  cookie: MyString
+  short_url: MyString
+  views_count: 1
+
+two:
+  email: MyString
+  site_id: 1
+  unique_code: MyString
+  invites_count: 1
+  inviter_id: 1
+  cookie: MyString
+  short_url: MyString
+  views_count: 1

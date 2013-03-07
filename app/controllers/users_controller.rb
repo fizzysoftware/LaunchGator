@@ -1,25 +1,9 @@
 class UsersController < ApplicationController
 
-    def show
-        @user = User.find(params[:id])
-    end
+    before_filter :super_admin_acces, :only=>[:index]
 
-    def edit
-        @user = User.find(params[:id])
-    end
-
-
-    def update
-        @user = User.find(params[:id])
-        respond_to do |format|
-            if @user.update_attributes(params[:user])
-                format.html { redirect_to @user, notice: 'User was successfully updated.' }
-                format.json { head :no_content }
-            else
-                format.html { render action: "edit" }
-                format.json { render json: @user.errors, status: :unprocessable_entity }
-            end
-        end
+    def index
+        @users = User.all
     end
 
     def check_user
@@ -38,18 +22,10 @@ class UsersController < ApplicationController
             @site = @user.site
             redirect_to edit_site_path(@site)
             # @visited = site_visited_or_not(1)
-           else
-             @site.update_attribute(:clicks, @site.clicks+1)   
-        end
-
-    #     unless session[:user_id].nil? 
-    #     @site = @user.site
-    #     redirect_to edit_site_path(@site)
-    #     @visited = site_visited_or_not(1)
-    # else
-    #   @site.update_attribute(:clicks, @site.clicks+1)
-    #   DailyReport.daily_view_counter(@site.id) 
-    # end
-    end
+        else
+            @site.update_attribute(:clicks, @site.clicks+1)   
+            #DailyReport.daily_view_counter(@site.id) 
+       end
+   end
 
 end

@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_filter :authorize, :only=>[:edit, :update]
-  # before_filter :super_admin_acces, :only=>[:index]
+  before_filter :super_admin_acces, :only=>[:index]
   before_filter :validate_subdomain, :only=>[:view]
 
   def index
@@ -8,7 +8,6 @@ class SitesController < ApplicationController
   end
 
   def edit  
-    @site = Site.find(params[:id])
     @site.build_image if @site.image.nil?
     if params[:tab]
       @active_tab = params[:tab].split(" ")
@@ -18,7 +17,6 @@ class SitesController < ApplicationController
   end
 
   def update
-    @site = Site.find(params[:id])
     if @site.update_attributes(params[:site])
       if !@site.image.nil?
         @site.image.update_colums(params)
@@ -33,17 +31,16 @@ class SitesController < ApplicationController
   end  
 
   def view 
-    debugger
     @site.update_attribute(:clicks, @site.clicks+1)
-    #@visited = site_visited_or_not(@site.id)
-    #@invite = Invite.new
+    @visited = site_visited_or_not(@site.id)
+    @invite = Invite.new
   end 
 
   private
 
   def authorize
     begin
-      @site = Site.find(params[:id])
+      @site = Site.find_by_id(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "This record does not exist."
       redirect_to(root_path)

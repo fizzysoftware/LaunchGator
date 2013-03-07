@@ -18,7 +18,7 @@ Listing <span class="stat">SITES</span>
 		<td><%= site.user.created_at.to_date %></td>
 		<td><%= link_to site.url, site.url %></td>
 		<td><%= site.clicks %></td>
-		<td><%#= site.invites.count %></td>
+		<td><%= site.invites.count %></td>
 	</tr>
 	<% end %>
 </table>

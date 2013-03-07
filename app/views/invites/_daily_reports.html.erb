@@ -1,0 +1,109 @@
+<div id="chartdiv" style="width: 100%; height: 400px;"></div>
+
+<%= javascript_include_tag('amcharts') %>
+<script type="text/javascript">
+var chart;
+var chartData = [];
+
+AmCharts.ready(function () {
+	// generate some random data first
+	generateChartData();
+
+	// SERIAL CHART    
+	chart = new AmCharts.AmSerialChart();
+	chart.pathToImages = "../../images/";
+	chart.panEventsEnabled = true;
+	chart.zoomOutButton = {
+		backgroundColor: "#000000",
+		backgroundAlpha: 0.15
+	};
+	chart.dataProvider = chartData;
+	chart.categoryField = "date";
+
+	// listen for "dataUpdated" event (fired when chart is inited) and call zoomChart method when it happens
+	chart.addListener("dataUpdated", zoomChart);
+
+	// AXES
+	// category                
+	var categoryAxis = chart.categoryAxis;
+	categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+	categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
+	categoryAxis.dashLength = 2;
+	categoryAxis.gridAlpha = 0.15;
+	categoryAxis.axisColor = "#DADADA";
+
+	// first value axis (on the left)
+	var valueAxis1 = new AmCharts.ValueAxis();
+	valueAxis1.axisColor = "#FF6600";
+	valueAxis1.axisThickness = 2;
+	valueAxis1.gridAlpha = 0;
+	chart.addValueAxis(valueAxis1);
+
+	// second value axis (on the right) 
+	var valueAxis2 = new AmCharts.ValueAxis();
+	valueAxis2.position = "right"; // this line makes the axis to appear on the right
+	valueAxis2.axisColor = "#FCD202";
+	valueAxis2.gridAlpha = 0;
+	valueAxis2.axisThickness = 2;
+	chart.addValueAxis(valueAxis2);
+
+
+
+	// GRAPHS
+	// first graph
+	var graph1 = new AmCharts.AmGraph();
+	graph1.valueAxis = valueAxis1; // we have to indicate which value axis should be used
+	graph1.title = "Visits";
+	graph1.valueField = "visits";
+	graph1.bullet = "round";
+	graph1.hideBulletsCount = 30;
+	chart.addGraph(graph1);
+
+	// second graph                
+	var graph2 = new AmCharts.AmGraph();
+	graph2.valueAxis = valueAxis2; // we have to indicate which value axis should be used
+	graph2.title = "Sign Ups ";
+	graph2.valueField = "hits";
+	graph2.bullet = "square";
+	graph2.hideBulletsCount = 30;
+	chart.addGraph(graph2);
+
+
+
+	// CURSOR
+	var chartCursor = new AmCharts.ChartCursor();
+	chartCursor.cursorPosition = "mouse";
+	chart.addChartCursor(chartCursor);
+
+	// SCROLLBAR
+	var chartScrollbar = new AmCharts.ChartScrollbar();
+	chart.addChartScrollbar(chartScrollbar);
+
+	// LEGEND
+	var legend = new AmCharts.AmLegend();
+	legend.marginLeft = 10;
+	chart.addLegend(legend);
+
+	// WRITE
+	chart.write("chartdiv");
+});
+
+// generate some random data, quite different range
+function generateChartData() {
+	<% @daily_reports.each do |daily_report| %>
+	chartData.push({
+		date: 	new Date((<%= 	daily_report.created_at.to_i  %>)*1000),
+		visits: <%= daily_report.views_count %> ,
+		hits: <%= daily_report.signups_count %>,
+	});
+	<% end %>
+}
+
+// this method is called when chart is first inited as we listen for "dataUpdated" event
+function zoomChart() {
+	// different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+	chart.zoomToIndexes(<%= (@daily_reports.count/5).to_i %>, <%= (@daily_reports.count).to_i %>);
+//	chart.zoomToIndexes(10, 12);
+	
+}
+</script>

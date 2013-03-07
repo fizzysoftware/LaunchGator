@@ -1,0 +1,20 @@
+<h4 class="statslist">	
+Listing <span class="stat">USERS</span>
+</h4> 
+<div class="divider"></div>
+
+<table id="hor-minimalist-b">
+	<thead>
+		<th scope = "col">Full name</th>
+		<th scope = "col">Account type</th>
+		<th scope = "col">Email</th>
+	</thead>
+
+	<% @users.each do |user| %>
+	<tr>
+		<td><%= user.full_name %></td>
+		<td><%= user.account_type %></td>
+		<td><%= user.email %></td>
+	</tr>
+	<% end %>
+</table>

@@ -1,11 +1,19 @@
 LaunchGator::Application.routes.draw do
   
+  match '/:id' => 'invites#referral', :constraints => {:id => /[a-zA-Z]{3}[0-9]{3}/}
+
+  resources :invites,:only=>[:create] do
+    member do
+      get 'referral'      
+    end
+  end  
+
   resources :sites, :only=>[:index,:edit,:update]   do
     member do
       get 'view'
     end  
-    #resources :invites,:only=>[:index]
-  end  
+    resources :invites,:only=>[:index]
+  end 
 
 
   devise_for :users, controllers: { omniauth_callbacks: "sessions" }
@@ -14,7 +22,7 @@ LaunchGator::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resources :users, :only => [:show,:edit,:update,:create] do
+  resources :users, :only => [:index] do
     collection do
       get 'home'
     end    

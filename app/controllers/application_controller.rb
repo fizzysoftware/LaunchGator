@@ -2,6 +2,9 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   
   before_filter :set_background
+  before_filter :mailer_set_url_options
+  helper :all
+
   private
 
   def after_sign_in_path_for(current_user)
@@ -9,7 +12,7 @@ class ApplicationController < ActionController::Base
     @site = @user.site
     edit_site_path(@site)
   end
-  
+
   def after_sign_out_path_for(resource_or_scope) 	
     root_path
   end
@@ -28,6 +31,7 @@ class ApplicationController < ActionController::Base
     else
       @site = Site.find(1)  
     end
+    
     if !@site.nil? and @site.id != 1  and !@site.image.nil? and !@site.image.background_file_name.nil?
       @background_image = @site.image.background.url
     else
@@ -44,6 +48,16 @@ class ApplicationController < ActionController::Base
 
   def site_visited_or_not(site_id)
     return Invite.find(:first, :conditions =>["cookie = ? and site_id = ?", cookies[:invite],site_id])
-  end  
+  end 
+
+  def super_admin_acces
+    unless current_user.account_type =='super_admin'
+      redirect_to root_path
+    end
+  end 
+
+  def mailer_set_url_options
+    ActionMailer::Base.default_url_options[:host] = request.host_with_port
+  end
 
 end
