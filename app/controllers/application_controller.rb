@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include UrlHelper
   
   before_filter :set_background
-  before_filter :mailer_set_url_options
+  #before_filter :mailer_set_url_options
   helper :all
 
   private
