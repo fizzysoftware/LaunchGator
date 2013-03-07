@@ -1,3 +1,4 @@
+<% if @site.id == 1 || (@site.id != 1 && (params[:controller]=="sites" || params[:controller]=="invites" )) %>
 <!-- Head Wrapper -->
 <div class="headwrap" id="home">      
 	<!-- Head Content -->
@@ -17,3 +18,4 @@
 	<!-- Head Content Ends -->
 </div>
 <!-- Head Wrapper Ends-->
+<% end %>
