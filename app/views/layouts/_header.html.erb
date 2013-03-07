@@ -3,14 +3,29 @@
 <div class="headwrap" id="home">      
 	<!-- Head Content -->
 	<div class="head">
-		<%= link_to (image_tag "logo.png",  :class=>'logo' ) , root_path %>
+		<% if session[:user_id].nil? %>
+			<%= link_to (image_tag "logo.png",  :class=>'logo' ) , root_path%>
+		<% elsif !@site.new_record? %>
+			<%= link_to (image_tag "logo.png",  :class=>'logo' ) , edit_site_path(@site) %>
+		<% else %>
+			<%= link_to (image_tag "logo.png",  :class=>'logo' ) , new_site_path %>
+		<% end %>
+
 		<!-- Main Navigation -->
 		<ul class="mainnav">
 			<% if !user_signed_in? %>	
 				<li><%= link_to "Login", new_user_session_path %></li>
 				<li><%= link_to "Sign Up", new_user_registration_path,:class => "signupbtn" %></li>
 			<% else %>
-				<li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+				<li>
+					<%= link_to "Your Page", edit_site_path(@site) ,:class => active_class(params[:action],'edit') %>  
+				</li>
+				<li>
+					<%= link_to "Insights", site_invites_path(@site) ,:class => active_class(params[:action],'index')%>
+				</li>
+				<li>
+					<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+				</li>
 			<% end %>
 		</ul>
 		<!-- Main Navigation Ends-->

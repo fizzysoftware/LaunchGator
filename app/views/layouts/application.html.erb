@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>
-		LaunchGator
-	</title>
-	<!--[if lt IE 9]>
+	<head>
+		<title><%= @title %></title>
+		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
 		<![endif]-->
 		<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
@@ -28,9 +26,23 @@
 				$('#notice').delay(3000).slideUp(200);
 				$('#error').delay(3000).slideUp(200);
 			});
-	</script>
+		</script>
+
+
+		<% if params[:controller] == "sites" and params[:action] == 'view' %>
+			<% if !@site.image.id.nil? and !@site.image.logo.nil?%>
+				<meta property="og:image" content="<%= @site.image.logo.url(:medium) %>"/>
+			<% end %>
+			<meta property="og:description" content="<%= @site.description if @site.description %>"/>
+			<meta property="og:title" content="<%= @site.tagline if @site.tagline %>"/>
+		<% end  %>
+
 	</head>
 	<body>
+		<!-- Kiss Insights Starts-->
+		<script type="text/javascript">var _kiq = _kiq || [];</script>
+		<script type="text/javascript" src="//s3.amazonaws.com/ki.js/22616/8OJ.js" async="true"></script>
+		<!-- Kiss Insights Starts-->
 		
 		<%= render "layouts/header" %>	
 		
@@ -66,8 +78,10 @@
 				
 			});
 		</script>
+
 		<% if (@site.id == 1 || (params[:action] != 'home' and @site.id == 1 )) && (@site.id == 1 && params[:action] != 'edit') %>
 			<%= render "layouts/footer" %>	
 		<% end %>	
+
 	</body>
 </html>

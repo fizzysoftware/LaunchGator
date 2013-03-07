@@ -4,6 +4,8 @@ class Site < ActiveRecord::Base
 
   has_one :image
   belongs_to :user
+  has_many :invites
+  has_many :daily_reports
 
   accepts_nested_attributes_for :image, :allow_destroy => true
   validates_presence_of :name, :url, :tagline, :email, :description
@@ -15,6 +17,10 @@ class Site < ActiveRecord::Base
    
   validates_format_of :url, :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix,
  	:unless => lambda{|a| a.url.blank?}
+
+  # def send_a_record_entry_notification_mail
+  #    Notifier.send_a_record_entry_notification_mail(self).deliver
+  # end 
 
  	def parse_domain_name_from_url
      	url = Domainatrix.parse(self.url)

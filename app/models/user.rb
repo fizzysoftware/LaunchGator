@@ -43,6 +43,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.random_string
+    #generate a random password consisting of strings and digits
+    chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+    newpass = ""
+    1.upto(10) { |i| newpass << chars[rand(chars.size-1)] }
+    return newpass
+  end    
+
   # def facebook_photo_url(type = 'large')
   #   return if self.uid.blank?
   #   "http://graph.facebook.com/" + self.uid.to_s + "/picture?type=" + type
