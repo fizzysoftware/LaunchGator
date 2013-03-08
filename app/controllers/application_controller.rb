@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
         @site = Site.find_by_domain_name!(subdomain)
       rescue ActiveRecord::RecordNotFound
         flash[:error] = "This record does not exist."
-        redirect_to(home_url(:subdomain=>false))
+        redirect_to(root_path(:subdomain=>false))
       end
     elsif params[:controller] == "sites" && params[:action] == "edit"
       @site = Site.find(params[:id])  
