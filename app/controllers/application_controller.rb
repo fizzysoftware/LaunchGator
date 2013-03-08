@@ -18,13 +18,14 @@ class ApplicationController < ActionController::Base
   end
 
   def set_background
+    debugger
     if request.subdomain.to_s  != "launch" and request.subdomain.to_s != ""
       subdomain = request.subdomain.to_s.gsub('.launch','')
       begin
         @site = Site.find_by_domain_name!(subdomain)
       rescue ActiveRecord::RecordNotFound
         flash[:error] = "This record does not exist."
-        redirect_to(root_path(:subdomain=>false))
+        redirect_to(contact_path(:subdomain=>false))
       end
     elsif params[:controller] == "sites" && params[:action] == "edit"
       @site = Site.find(params[:id])  
