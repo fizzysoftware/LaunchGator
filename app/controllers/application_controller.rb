@@ -8,9 +8,11 @@ class ApplicationController < ActionController::Base
   private
 
   def after_sign_in_path_for(current_user)
-    @user = current_user
-    @site = @user.site
-    edit_site_path(@site)
+    if !admin_user_signed_in?
+      @user = current_user
+      @site = @user.site
+      edit_site_path(@site)
+    end
   end
 
   def after_sign_out_path_for(resource_or_scope) 	
