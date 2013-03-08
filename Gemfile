@@ -44,6 +44,7 @@ gem "goshortener"
 gem 'domainatrix'
 gem 'redcarpet'
 gem 'albino'
+gem 'thin'
 
 group :production do
   gem "pg"

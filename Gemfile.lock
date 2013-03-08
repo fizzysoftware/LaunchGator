@@ -363,6 +363,7 @@ DEPENDENCIES
   simple_form
   smusher
   therubyracer
+  thin
   uglifier (>= 1.0.3)
   uuid
   whenever
