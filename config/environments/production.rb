@@ -7,7 +7,17 @@ LaunchGator::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  ActionMailer::Base.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => 'launchgator.heroku.com' }
+  ActionMailer::Base.smtp_settings = {
+  :user_name => "mohitjain",
+  :password => "mohitjain",
+  :domain => "launchgator.com",
+  :address => "smtp.sendgrid.net",
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+  }
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
