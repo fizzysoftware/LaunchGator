@@ -59,11 +59,11 @@ group :development, :test do
   gem 'hirb'
   gem 'localtunnel'
   gem 'debugger'
-  gem "binding_of_caller"
+  #gem "binding_of_caller"
   gem 'meta_request','0.2.1'
-  gem "better_errors"
+  #gem "better_errors"
   gem 'lol_dba'
-  gem 'thin'
+  #gem 'thin'
   gem 'quiet_assets'
   #gem 'bullet'
   gem 'railroady'

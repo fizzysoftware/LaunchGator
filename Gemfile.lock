@@ -49,10 +49,6 @@ GEM
       activesupport (>= 3.0.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    better_errors (0.3.2)
-      coderay (>= 1.0.0)
-      erubis (>= 2.7.0)
-    binding_of_caller (0.6.8)
     bourbon (3.0.1)
       sass (>= 3.2.0)
       thor
@@ -324,8 +320,6 @@ DEPENDENCIES
   activeadmin
   albino
   annotate
-  better_errors
-  binding_of_caller
   capistrano
   chronic
   client_side_validations
@@ -369,7 +363,6 @@ DEPENDENCIES
   simple_form
   smusher
   therubyracer
-  thin
   uglifier (>= 1.0.3)
   uuid
   whenever
