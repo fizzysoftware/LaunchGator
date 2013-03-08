@@ -18,7 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_background
-    debugger
     if request.subdomain.to_s  != "launch" and request.subdomain.to_s != ""
       subdomain = request.subdomain.to_s.gsub('.launch','')
       begin
