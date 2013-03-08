@@ -1,5 +1,8 @@
 LaunchGator::Application.routes.draw do
   
+  resources :contact_us,:only=>[:new,:create]
+
+
   match '/:id' => 'invites#referral', :constraints => {:id => /[a-zA-Z]{3}[0-9]{3}/}
 
   resources :invites,:only=>[:create] do
@@ -31,6 +34,10 @@ LaunchGator::Application.routes.draw do
 
   match 'check_user' => 'users#check_user', :as => :check_user
   match 'terms'=>'pages#terms',:as=>:terms
+  match 'contact' => 'contact_us#new',:as=>:contact
+  match 'about' => 'pages#about', :as => :about
+  match 'terms'=>'pages#terms',:as=>:terms
+  match 'privacy_policy'=>'pages#privacy_policy',:as=>:privacy_policy
     
   match 'auth/failure', to: redirect('/')
   

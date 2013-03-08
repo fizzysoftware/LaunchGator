@@ -1,0 +1,45 @@
+<script type="text/javascript">
+	$(function(){
+		$('.footwrap').css({'position':'relative','top':'0px'});
+	});
+</script>
+
+<table id='pricing_plans'>
+	<tr>
+		<td>Features</td>	
+		<% @pricing_plans.each do |pricing_plan|%>
+		<td><%= pricing_plan.plan_type %></td>
+		<% end %>	
+	</tr>
+	<tr>
+		<td></td>	
+		<% @pricing_plans.each do |pricing_plan|%>
+
+		<td><%= pricing_plan.price_in_dollars %></td>
+		<% end %>	
+	</tr>
+	<tr>
+		<td></td>
+		<% @pricing_plans.each do |pricing_plan|%>
+		<td><%= pricing_plan.price_in_indian_rupees %></td>
+		<% end %>	
+	</tr>
+
+	<% @plan_features.each do |plan_feature|%>
+	<tr>
+		<td><%= plan_feature.name %>(<%= plan_feature.description %>)</td>
+		<% @pricing_plans.each do |pricing_plan|%>
+		<td>
+		<% if plan_feature.pricing_plans.map(&:id).include?(pricing_plan.id) %>
+			Yes
+		<% else %>
+			No
+		<% end %>
+		</td>
+		<% end %>	
+	</tr>
+	<% end %>
+
+
+
+</table>
