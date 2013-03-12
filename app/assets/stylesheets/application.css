@@ -1253,3 +1253,28 @@ div#wrapper.total_white input[type="text"], div#wrapper.total_white input[type="
 	line-height:26px;
 	color: #ccc;
 }
+
+.countdown_section{ 
+    background:#1b1b1b;
+    width:140px;
+    margin:30px 5px;
+    border-radius:70px;
+    height:140px;
+    float:left;
+    text-align:center;
+}
+.countdown_amount{
+    margin:25px;
+    color:#fff;
+    font-size:32px;
+    font-weight:bold;
+    line-height:85px;
+    text-align:center;
+}
+.countdown_day{
+    text-align:center;
+    font-size:24px;
+    line-height:14px;
+    color:#fff;
+    text-transform:lowercase;
+}
