@@ -63,6 +63,25 @@ table {
 a{
 text-decoration:none;
 }
+
+.fork {
+width: 118px;
+height: 118px;
+position: fixed;
+left: 0;
+top: 0;
+z-index: 999999;
+}
+
+.fork img {
+max-width: 100%;
+width: auto	9;
+height: auto;
+vertical-align: middle;
+border: 0;
+-ms-interpolation-mode: bicubic;
+}
+
 /* wrap Styles */
 .headwrap{
 	background: #222;
