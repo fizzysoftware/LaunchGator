@@ -2,24 +2,19 @@
 
 ### Clone the repo and make a copy to start the new application
 ```
-git clone git@bitbucket.org:fizzysoftware/basic_module.git
+git clone git@bitbucket.org:nikhil_kathuria89/launch_gator.git
 ```
 
 ### Install dependencies (ensure bundler is installed)
 ```
-cd basic_module
+cd launch_gator
 bundle install
 ```
 
 CREATE database config (sample config is in config/database.sample.yml)
 ```
-cp config/database.yml.samle config/database.yml
+cp config/database_sample.yml config/database.yml
 # make the appropirate changes 
-Search in the whole application.
-
-1. Replace basic_module with namespace of your application like my_awesome_app
-2. Replace BasicModule with namespace of your application name MyAwesomeApp
-
 
 
 ```
@@ -27,58 +22,20 @@ Search in the whole application.
 Setup DB
 ```
 rake db:create
-```
-
 rake db:migrate
-```
-
 rake db:seed
 ```
 
+
 Start the Server
 ```
+rails s
+```
 
-
-# Administration
-
-You can access the admin console by visiting http://localhost:3000/admin
-with the below credentials:
-
-* user: sudhanshu@fizzysoftware.com
-* pass: testing
-
-* user: mohit@fizzysoftware.com
-* pass: testing
-
-
-Testing emails:
-
-config.action_mailer.smtp_settings = {
-   address: "smtp.gmail.com",
-   port: 587,
-   domain: "basic_module.com",
-   authentication: "plain",
-   enable_starttls_auto: true,
-   user_name: "juggernaut789@gmail.com",
-   password: "mohitjain"
- }
-
-
-#Mailcatcher gem:
- 
-mailcatcher
-Starting MailCatcher
-==> smtp://127.0.0.1:1025
-==> http://127.0.0.1:1080
-*** MailCatcher runs as a daemon by default. Go to the web interface to quit. ie http://127.0.0.1:1080
-
-#act_as_countable module
-
-This is a module which will be used to display graphs in admin panel. 
-
-#reminder module
-
-This modules send reminder emails to users which are not coming in certain time interval.
+For Background Jobs(Sending mail etc)
+```
+rake jobs:work
+```
 
 
 #Production list
@@ -109,4 +66,3 @@ These are the some basic guidelines I always follow before launching a ruby on r
 20. Add cache control headers
 21. Make sure you have a contact us page
 22. If user don’t comes back after 3 days send him a reminder  It should be a personal email and take this email seriously
-
