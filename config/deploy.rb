@@ -27,7 +27,7 @@ server "192.155.90.129", :app, :web, :db, :primary => true
 set (:deploy_to) { "/home/fizzy/#{application}/#{stage}" }
 set :user, 'fizzy'
 set :keep_releases, 3
-set :repository, "git@bitbucket.org:nikhil_kathuria89/launch_gator.git"
+set :repository, "https://github.com/fizzysoftware/LaunchGator.git"
 set :use_sudo, false
 set :scm, :git
 default_run_options[:pty] = true

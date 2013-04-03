@@ -2,12 +2,12 @@
 
 ### Clone the repo and make a copy to start the new application
 ```
-git clone git@bitbucket.org:nikhil_kathuria89/launch_gator.git
+git clone https://github.com/fizzysoftware/LaunchGator.git
 ```
 
 ### Install dependencies (ensure bundler is installed)
 ```
-cd launch_gator
+cd LaunchGator
 bundle install
 ```
 
@@ -15,7 +15,6 @@ CREATE database config (sample config is in config/database.sample.yml)
 ```
 cp config/database_sample.yml config/database.yml
 # make the appropirate changes 
-
 
 ```
 
