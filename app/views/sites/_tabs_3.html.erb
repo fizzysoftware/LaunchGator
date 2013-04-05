@@ -1,0 +1,32 @@
+<p>
+	<%= f.label :twitter %>
+</p>
+<p><%= f.text_field :twitter ,  :class=>"txt_small" %>
+	<span class="hint_1">e.g. myTwitter (no @ sign) </span>
+</p>
+<p>
+	<%= f.label :twitter_message %>
+</p>	
+<p> <%= f.text_field :twitter_message ,  :class=>"txt_small" %>
+	<span class="hint_1">The suggested tweet. </span>
+</p>
+<p>
+	<%= f.label :facebook %>
+</p>
+<p> <%= f.text_field :facebook ,  :class=>"txt_small" %>
+	<span class="hint_1">e.g. facebook.com/myFacebook (optional) </span>
+</p>
+<p>
+	<%= f.label :blog %>
+</p>
+<p><%= f.text_field :blog ,  :class=>"txt_small" %>
+	<span class="hint_1">The link to your blog (optional) </span>
+</p>
+
+<p>
+	<%= f.label :sharing_instructions %>
+</p>
+<p>
+	<%= f.text_area :sharing_instructions ,  :class=>"txt_small" %>
+	<span class="hint_1">Sharing instructions for users</span>
+</p>

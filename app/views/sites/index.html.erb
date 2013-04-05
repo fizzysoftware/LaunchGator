@@ -1,0 +1,24 @@
+<h4 class="statslist">	
+Listing <span class="stat">SITES</span> 
+</h4> 
+<div class="divider"></div>
+<table id="hor-minimalist-b">
+	<thead>
+		<th scope = "col">Name</th>
+		<th scope = "col">User Email</th>
+		<th scope = "col">Joined On</th>
+		<th scope = "col">Url</th>
+		<th scope = "col">clicks</th>
+		<th scope = "col">SignUps</th>
+		</thead>
+	<% @sites.each do |site| %>
+	<tr>
+		<td><%= site.name %></td>
+		<td><%= site.user.email %></td>
+		<td><%= site.user.created_at.to_date %></td>
+		<td><%= link_to site.url, site.url %></td>
+		<td><%= site.clicks %></td>
+		<td><%= site.invites.count %></td>
+	</tr>
+	<% end %>
+</table>

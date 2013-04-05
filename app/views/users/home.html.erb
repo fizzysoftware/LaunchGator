@@ -1,0 +1,88 @@
+<% if @site.id != 1 %>
+	<%= render 'sites/view' %>
+<% else %>
+<div id="welcome_form" class="">
+	<h1>
+		<span class="launching">
+			Create a Viral Launching Soon page
+		</span>
+		<span class="orange">
+			in minutes for FREE!
+		</span>
+	</h1>
+	<p align="center">
+		Enter your email address to get started
+	</p>
+	<p id="error_message" align="center" style="display:none">
+
+	</p>
+	<div class="clear" id="form">
+		<%= form_for @user, :as => :user , :url => check_user_path do |f| %>
+			<%= f.text_field :email ,:class=>"txt_small home_email", :placeholder=>'yourname@yourmail.com' %>
+			 <%= hidden_field_tag 'home_page', 'home_page' %> 	    
+			<%= submit_tag "Go" ,:class => "greenbutton" %>
+		<% end %>
+	</div>
+	<%= hidden_field_tag 'site', @site.id %>
+</p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var initialText = "your@email.com";
+	$('#invite_email').focus(function(){
+		if( $(this).val()==initialText){
+			$(this).val("");
+		}
+	});
+	$('#invite_email').blur(function(){
+		if($(this).val()==""){
+			$(this).val(initialText);
+		}
+	});
+});
+
+
+$('#notify_me').click(function() {
+	$(".error").hide();
+	var hasError = false;
+	var emailReg = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var emailaddressVal = $("#invite_email").val();
+	if(emailaddressVal == '') {
+		$("#error_message").fadeIn();
+		$("#error_message").html('Please enter your email address.');
+		hasError = true;
+	}
+
+	else if(!emailReg.test(emailaddressVal) || emailaddressVal == 'your@email.com') {
+		$("#error_message").fadeIn();
+		$("#error_message").html('Enter a valid email address.');
+		hasError = true;
+	}
+
+	if (!hasError) {
+		submit_email();
+	}
+	return false;
+
+});
+function submit_email()
+{
+	$.post("/invites", { email: $('#invite_email').val() , site_id: $('#site').val() ,referral_code: $('#referral_code').val() 
+}, function(response){
+	$('#welcome_form').hide();
+	$('#social_networks').show();
+	$("#unique_code").show();
+	$('#unique_code_textbox').val(response);
+	$("meta[property=og\\:url]").attr("content",response);
+});
+}
+
+$('#invite_email').keydown(function(e) {
+	if (e.keyCode == 13) {
+		$('#notify_me').click();
+	}
+
+});
+</script>
+<% end %>

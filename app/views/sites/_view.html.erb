@@ -1,0 +1,178 @@
+<p align="center">
+	<% if !@site.image.nil? and !@site.image.logo_file_name.nil? %>
+	<%= link_to image_tag(@site.image.logo.url(:medium)), root_url %>
+	<% elsif !@site.logo.nil? %>
+	<h1 class="patternhead" style="color:<%= @site.name_color %>!important">    
+ 				<%=  @site.logo  %> 	
+	</h1>
+	<% else %>
+	<h1 class="patternhead" style="color:<%= @site.name_color %>!important">
+		<%=  @site.name  %>
+	</h1>
+	<% end %>
+	<p class="tagline" style="color:<%= @site.tagline_color %>!important">
+		<%= @site.tagline %>
+	</p>
+</p>
+<div id="welcome_form" class="<%= 'hide' unless @visited.nil? %>" >
+	<p class="site_description" style="color:<%= @site.description_color %>">
+		<%= @site.description %>
+	</p>    
+	<p align="center" class="punchline" style="color:<%= @site.description_color %>">
+		Coming Soon! Enter your email to join our invite list.
+	</p>    
+	<p id="error_message" align="center" style="display:none">  
+	</p>    
+	<div class="clear" id="form">
+		<input type="text" name="email" id="invite_email" placeholder="yourname@yourmail.com "/>
+		<%= link_to "Go",  "JavaScript:void(0);",:id=>'notify_me', :class=>"greenbutton topmarginfix" %>
+	</div>  
+	<%= hidden_field_tag 'site', @site.id %>
+	<p style="float:right;">
+		<span style="font-size:12px;font-weight: 700;color:<%= @site.description_color %>">
+			Powered by
+		</span>
+		<a href="http://launch.deskgator.com" target="_blank" >
+			<img src="/assets/powered_logo.png" style="position: relative;top: 6px;margin-right: 6px;" alt="" />
+		</a>
+	</p>
+	<%= hidden_field_tag 'referral_code', params[:referral_code] %>
+</div>
+
+<div id="social_networks" style="margin-top:20px;" class="<%= 'hide' if @visited.nil? %>">
+
+	<%  if @visited.nil? %>
+	<p>
+		<h1 class="header_text">
+			Thanks! Want to get an early invitation?
+		</h1>
+	</p>
+	<% else %>
+	<div>
+		<h1 class="header_text">
+			Welcome Back!
+		</h1>
+		<div class="stats">
+			<strong>
+				Live Stats
+			</strong>
+			<%= @visited.views_count %> Views   
+			<%= @visited.invites_count %> Signups
+		</div>
+	</div>
+	<% end %>
+
+	<div style="color:<%= @site.description_color %>!important" class="sharing_description">
+		<% if @site.sharing_instructions %>    
+		<%= @site.sharing_instructions.sub('%share_referral_link%',@site.url).html_safe %>        
+		<% end %>
+	</div>
+	<br/>
+	<br/>
+	<div>	
+		<p style="color:<%= @site.description_color %>!important"> 
+			To share with your friends, click 'Recommend' and 'Tweet':
+		</p>  
+		<div id="twitter-like" class="clear" style="width:150px;float:left;margin-left:50px;margin-top:20px;">
+			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= @site.url %>" data-text="<%= @site.twitter_message %>" data-count="horizontal" data-via="<%= @site.twitter %>">Tweet</a>
+			<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+		</div>
+
+		<div id="facebook-like" style="margin-top:20px;">
+			<% if !@site.facebook.nil? %>
+			<iframe src="http://www.facebook.com/plugins/like.php?href=<%= @site.url %>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden;  width:95px; height:30px;" allowTransparency="true"></iframe>
+			<% else %> 
+			<iframe src="http://www.facebook.com/plugins/like.php?href=<%= @site.facebook %>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden;  width:95px; height:30px;" allowTransparency="true"></iframe> 
+			<% end %>
+		</div>	
+	</div>
+
+	<div class="<%= 'hide' if @visited.nil? %>" id='unique_code' style="margin-top:5px;">
+		<br/>
+		<span style="color:<%= @site.description_color %>!important">
+			Or copy and paste the following link to share wherever you want!
+		</span>
+		<br/>
+		<br/>
+	</div>
+	<div>	
+		<input type="text" id="unique_code_textbox" class="home_page_text_box_1" value="<%=  @visited.short_url unless @visited.nil? %>"/>
+	</div>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+	var initialText = "your@email.com";
+	$('#invite_email').focus(function(){
+		if( $(this).val()==initialText){
+			$(this).val("");
+		}
+	});
+	$('#invite_email').blur(function(){
+		if($(this).val()==""){
+			$(this).val(initialText);
+		}
+	});
+});
+
+
+$('#notify_me').click(function() {
+	$(".error").hide();
+	var hasError = false;
+	var emailReg = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	var emailaddressVal = $("#invite_email").val();
+	if(emailaddressVal == '') {
+		$("#error_message").fadeIn();
+		$("#error_message").html('Please enter your email address.');
+		hasError = true;
+	}
+
+	else if(!emailReg.test(emailaddressVal) || emailaddressVal == 'your@email.com') {
+		$("#error_message").fadeIn();
+		$("#error_message").html('Enter a valid email address.');
+		hasError = true;
+	}
+
+	if (!hasError) {
+		submit_email();
+	}
+	return false;
+
+});
+
+
+function submit_email()
+{
+
+	$.post("/invites", { email: $('#invite_email').val() , site_id: $('#site').val() ,referral_code: $('#referral_code').val() 
+}, function(response){
+	$('#welcome_form').hide();
+	$('#social_networks').show();
+	$("#unique_code").show();
+	$('#unique_code_textbox').val(response);
+});
+}
+
+var on_button_click = function() {
+	// This sends us an event every time a user clicks the button
+	mpmetrics.track("Go Button clicked", {'Domain' : '<%= @site.url %>'});
+};
+
+
+$(document).ready(function() {
+	mpmetrics.track("landing Page Loaded", {'Domain' : '<%= @site.url %>'});
+	$("#notify_me").click(on_button_click);
+});
+
+
+$('#invite_email').keydown(function(e) {
+	if (e.keyCode == 13) {
+		$('#notify_me').click();
+	}
+
+});
+
+</script>
+
+<%= @site.google_analytics_code.html_safe if @site.google_analytics_code %>

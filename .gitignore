@@ -1,0 +1,13 @@
+lighthouse-addons/*
+doc/*
+config/database.yml
+db/schema.rb
+db/sphinx/*
+tmp/*
+public/system/*
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+tags
+.sass-cache

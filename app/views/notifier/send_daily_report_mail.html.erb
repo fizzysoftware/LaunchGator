@@ -1,0 +1,57 @@
+<body>
+	<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="border:1px solid #f1f1f1;font-family: Arial, Helvetica, sans-serif">
+		<tr>
+			
+			<th style="border-bottom:1px solid #ccc;border-right:1px solid #F1F1F1;width: 250px;height: 100px;" align="center">
+				<p align="center">
+					<% if !@site.image.nil? and !@site.image.logo_file_name.nil? %>
+						<%= image_tag(root_url + @site.image.logo.url(:medium), :style=>"width:220px;height:auto;") %>
+					<% elsif !@site.logo.nil? %>
+					<h1 style="color:<%= @site.name_color %>!important">    
+						<%= @site.logo  %>
+					</h1>
+					<% else %>
+					<h1 style="color:<%= @site.name_color %>!important">    
+						<%= @site.name %> 
+					</h1>
+					<% end %>
+				</p>
+			</th>
+			<th colspan="2"height="100" scope="col" style="border-bottom:1px solid #ccc;color:#666;">
+				<%= @site.tagline %>    
+			</th>
+		
+		</tr>
+		<tr> 
+		
+			<td colspan="2" style="padding:20px">
+				<div style="text-align:center">
+				Activity on your landing page for <strong><%= @daily_report.created_at.to_date %></strong>
+				<br>
+				<br>
+				<span style="font-size:26px;font-weight:700">Visits</span>&nbsp;
+				<span style="font-size:26px;font-weight:400"><%= @daily_report.views_count %></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<span style="font-size:26px;font-weight:700">SignUp's</span>&nbsp;
+				<span style="font-size:26px;font-weight:400"><%= @daily_report.signups_count %></span>
+				<br/>
+				<br/>
+			    <br/>
+			</div>
+			
+			      Cheers!!
+			     <br/>
+			      LaunchGator Team
+			</td> 
+		
+		</tr>
+		<tr>
+			<td colspan="2" style="padding:20px;border-top:1px solid #ccc;font-size:12px;">
+				<strong>P.S.</strong> - Please mark this email as not spam (unless our magic worked and it landed in your inbox) and add us to your contacts.<br/>		
+			</td>
+		</tr>
+	</table>
+</body>
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHyUjpFEfH6fX7h41Dmvi3HhQA0xZkkyf1pAkRr/1acDzM5utP2pT4cwT8BLtp+0AjW8ccPw4abwuj9q4AS3Un3f/edlbhFKsDDThF+7DhGuX76KRxGtHhk0beHyyLOquK87venM14QK2yqRfxJuBOCqQSGAyGoOn5FK0tsk3QFWcn0QA4wx5Q/5rliLlYuXql4p1PRsEProkKPBtBMrpUNNzPIPQe4T35jHEkM8HiG4F8iCakN+udFKQII9g6T0Myh/sCe0SZY/aHx8gMfEKbkY6CwNExfuCYayaIWr1qbUwK2iRxB7Q9JYKJfM0YSwlji8a4FOcgDLPzWlSd5wRt saahilgrover20@gmail.com

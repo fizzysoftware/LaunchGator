@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  id                      :integer          not null, primary key
+#  attachment_file_name    :string(255)
+#  attachment_content_type :string(255)
+#  attachment_file_size    :integer
+#  imageable_id            :integer
+#  imageable_type          :string(255)
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  attachment_file_name: MyString
+  attachment_content_type: MyString
+  attachment_file_size: 1
+  imageable_id: 1
+  imageable_type: MyString
+
+two:
+  attachment_file_name: MyString
+  attachment_content_type: MyString
+  attachment_file_size: 1
+  imageable_id: 1
+  imageable_type: MyString

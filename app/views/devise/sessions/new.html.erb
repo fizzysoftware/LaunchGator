@@ -1,0 +1,20 @@
+<h1>Enter your login details</h1>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <p><%= f.label :email, 'Email Address' %></p>
+  <p><%= f.text_field :email, :autofocus => true,:class=>"txt_small" %></p>
+
+  <p><%= f.label :password %></p>
+  <p><%= f.password_field :password,:class=>"txt_small" %></p>
+
+  <% if devise_mapping.rememberable? -%>
+  	<p style="font-size: 12px;">
+		<%= f.check_box :remember_me %>
+		Keep me signed in |
+		<%=   link_to "Can't access your account?",  new_password_path(resource_name) %>
+	</p>
+	<br/>
+  <% end -%>
+
+ <p><%= f.submit "Sign in" ,:class => "greenbutton" %></p>
+<% end %>

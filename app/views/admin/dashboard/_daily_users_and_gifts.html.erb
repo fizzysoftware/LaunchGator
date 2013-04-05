@@ -1,0 +1,82 @@
+
+<%= javascript_include_tag 'highcharts' %>
+<%= javascript_include_tag 'exporting' %>
+<script type="text/javascript">
+	$(function () {
+		var chart;
+		$(document).ready(function() {
+			chart = new Highcharts.Chart({
+				chart: {
+					renderTo: 'growth_rate'
+				},
+				title: {
+					text: 'Growth Charts - Users, Gifts and Gifts items'
+				},
+				xAxis: {
+					type: 'datetime'
+				},
+				yAxis: {
+					title: {
+						text: 'Counts'
+					}
+				},
+				tooltip: {
+					formatter: function() {
+						return ''+
+						Highcharts.dateFormat('%e. %b', this.x) +' -> '+ this.y;
+					}
+				},
+				plotOptions: {
+					spline: {
+						lineWidth: 4,
+						states: {
+							hover: {
+								lineWidth: 5
+							}
+						},
+						marker: {
+							enabled: false,
+							states: {
+								hover: {
+									enabled: true,
+									symbol: 'circle',
+									radius: 5,
+									lineWidth: 1
+								}
+							}
+						}
+					}
+				},
+				series: [
+				{
+					name: 'Total Signups Today',
+					pointInterval: <%= 1.day * 1000 %>,
+					pointStart: <%= 30.days.ago.to_i * 1000 %>,
+					data: <%= User.daily_records_counts_array_in_past_n_days %>
+    
+				}, {
+					name: 'Total Gits Sent Tday',
+					pointInterval: <%= 1.day * 1000 %>,
+					pointStart: <%= 30.days.ago.to_i * 1000 %>,
+					data: <%= Gift.daily_records_counts_array_in_past_n_days %>
+				}
+				, {
+					name: 'Total Gift Items Created Today',
+					pointInterval: <%= 1.day * 1000 %>,
+					pointStart: <%= 30.days.ago.to_i * 1000 %>,
+					data: <%= Item.daily_records_counts_array_in_past_n_days %>
+				}
+				]
+				,
+				navigation: {
+					menuItemStyle: {
+						fontSize: '10px'
+					}
+				}
+			});
+		});
+    
+	});
+</script>
+		
+<div id="growth_rate" style="min-width: 400px; height: 400px;"></div>
