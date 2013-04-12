@@ -1,4 +1,5 @@
 class InvitesController < ApplicationController
+
   before_filter :valid_site, :only=>[:create]
   before_filter :validate_referal_code, :only=>[:referral]
 
