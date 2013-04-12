@@ -3,6 +3,12 @@ class InvitesController < ApplicationController
   before_filter :valid_site, :only=>[:create]
   before_filter :validate_referal_code, :only=>[:referral]
 
+  def index
+    @site = Site.find(params[:site_id])
+    @invites = @site.invites.paginate(:page => params[:page], :per_page=> 15)
+    @daily_reports = DailyReport.where('site_id = ?',params[:site_id]).order("created_at ASC")
+  end
+
   def create
     invite = Invite.get_invite_code_for_email_and_site(@site.id,params[:email],params[:referral_code])
     cookies[:invite] = { :value => invite.cookie, :expires => 1.year.from_now }

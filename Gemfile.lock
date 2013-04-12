@@ -350,10 +350,6 @@ DEPENDENCIES
   pry
   pry-doc
   quiet_assets
-<<<<<<< HEAD
-=======
-  rack-mini-profiler
->>>>>>> 01391ece45b817fc064ad33bf11bc5c974d4d8bc
   railroady
   rails (= 3.2.11)
   redcarpet
