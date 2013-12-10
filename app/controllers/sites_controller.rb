@@ -4,10 +4,10 @@ class SitesController < ApplicationController
   before_filter :validate_subdomain, :only=>[:view]
 
   def index
-    @sites = Site.all
+    @sites = Site.paginate(:page => params[:page], :per_page=> 50)
   end
 
-  def edit  
+  def edit
     @site.build_image if @site.image.nil?
     if params[:tab]
       @active_tab = params[:tab].split(" ")
@@ -23,18 +23,18 @@ class SitesController < ApplicationController
       end
       @site.parse_domain_name_from_url
       flash[:notice] = "Site was successfully updated."
-       redirect_to(edit_site_path(@site)) 
-    else 
-      @site.build_image if @site.image.nil?  
-      render :action => "edit" 
+      redirect_to(edit_site_path(@site))
+    else
+      @site.build_image if @site.image.nil?
+      render :action => "edit"
     end
-  end  
+  end
 
-  def view 
+  def view
     @site.update_attribute(:clicks, @site.clicks+1)
     @visited = site_visited_or_not(@site.id)
     @invite = Invite.new
-  end 
+  end
 
   private
 
@@ -45,19 +45,19 @@ class SitesController < ApplicationController
       flash[:error] = "This record does not exist."
       redirect_to(root_path)
     else
-      unless @site.user_id == current_user.id
+      unless current_user.present? and @site.user_id == current_user.id
         flash[:error] = "You are not authorized for this."
         redirect_to(root_path)
-      end  
+      end
 
     end
-  end 
+  end
 
   def no_delete_for_default_site
     if params[:id]==1
       redirect_to(root_path)
     end
-  end  
+  end
 
   def validate_subdomain
     if request.subdomain.to_s  != "launch"
@@ -69,8 +69,8 @@ class SitesController < ApplicationController
         redirect_to(root_path(:subdomain=>false))
       end
     else
-      @site = Site.find(1)  
+      @site = Site.find(1)
     end
-  end 
+  end
 
 end

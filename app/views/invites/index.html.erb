@@ -1,10 +1,10 @@
-<h4 class="statslist">  
-    <span class="stat"><%= @invites.count %></span> Sign ups&nbsp;&nbsp;/&nbsp;&nbsp;<span class="stat"><%= @site.clicks %></span> Page views&nbsp;&nbsp;/&nbsp;<% if @invites.count != 0 && @site.clicks !=0 %>
+<h4 class="statslist">
+    <span class="stat"><%= @invites.count %></span> Sign Up(s)&nbsp;&nbsp;/&nbsp;&nbsp;<span class="stat"><%= @site.clicks %></span> Page View(s)&nbsp;&nbsp;/&nbsp;<% if @invites.count != 0 && @site.clicks !=0 %>
     <span class="stat"><%= ((@invites.count.to_f/@site.clicks.to_f)* 100).round(2).to_s %>%</span> Conversion Rate
-    <% else %>    
-    <span class="stat">0%</span> Conversion Rate      
-    <% end %>                                      
-    
+    <% else %>
+    <span class="stat">0%</span> Conversion Rate
+    <% end %>
+
 </h4>
 <%= link_to "Export", site_invites_path(@site, :xls), :class=>"exportbtn" %></span>
 <div class="divider"></div>
@@ -13,16 +13,16 @@
         <tr>
             <th scope = "col">No.</th>
             <th scope = "col">Email</th>
-            <th scope = "col">Clicks </th>
+            <th scope = "col">Views </th>
             <th scope = "col">Referrals</th>
             <th scope = "col">Conversion</th>
             <th scope = "col">Referred By</th>
-            <th scope = "col">Date</th>   
+            <th scope = "col">Date</th>
         </tr>
     </thead>
-    
+
     <% @invites.each_with_index do |invite,index| %>
-    
+
     <tr>
         <td><%= index+1 %></td>
         <td><%= invite.email %></td>
@@ -32,9 +32,9 @@
         <td><%= invite.inviter_email %></td>
         <td><%= invite.created_at.strftime("%m/%d/%Y") %></td>
     </tr>
-    
+
     <% end %>
-    
+
 </table>
 
 <div><%= will_paginate @invites  %></div>

@@ -17,17 +17,17 @@ gem 'jquery-rails'
 gem 'json'
 gem 'smusher'
 gem 'will_paginate'
-gem 'daemons' 
+gem 'daemons'
 gem 'delayed_job_active_record'
 gem 'whenever'
 gem "delayed_job_web"
 gem 'paperclip'
 gem 'rmagick'
-gem 'libv8', '~> 3.11.8'
+# gem 'libv8', '~> 3.11.8'
 gem 'remotipart', '~> 1.0'
 gem 'execjs'
 gem 'activeadmin'
-#gem 'newrelic_rpm'
+gem 'newrelic_rpm'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
@@ -45,6 +45,8 @@ gem 'domainatrix'
 gem 'redcarpet'
 gem 'albino'
 gem 'thin'
+gem 'airbrake'
+gem 'interakt_rails'
 
 group :production do
   gem "pg"
@@ -58,14 +60,14 @@ group :development, :test do
   gem 'pry-doc'
   gem 'hirb'
   gem 'localtunnel'
-  gem 'debugger'
-  #gem "binding_of_caller"
+  gem "binding_of_caller"
   gem 'meta_request','0.2.1'
-  #gem "better_errors"
+  gem "better_errors"
   gem 'lol_dba'
-  #gem 'thin'
+  gem 'thin'
   gem 'quiet_assets'
-  #gem 'bullet'
+  gem 'bullet'
   gem 'railroady'
-  #gem 'rails-footnotes', '>= 3.7.5.rc4'
+  gem 'debugger'
+  gem 'rails-footnotes', '>= 3.7.5.rc4'
 end

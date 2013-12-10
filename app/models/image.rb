@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   attr_accessible :logo,:background
+
   belongs_to :site
   has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>",:facebook_meta_tag => "200x200#" }
   has_attached_file :background 
@@ -15,3 +16,20 @@ class Image < ActiveRecord::Base
   end
   
 end
+
+# == Schema Information
+#
+# Table name: images
+#
+#  id                    :integer          not null, primary key
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  site_id               :integer
+#  logo_file_name        :string(255)
+#  logo_file_size        :string(255)
+#  logo_updated_at       :string(255)
+#  background_file_name  :string(255)
+#  background_file_size  :string(255)
+#  background_updated_at :string(255)
+#
+

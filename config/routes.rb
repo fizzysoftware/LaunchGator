@@ -1,23 +1,21 @@
 LaunchGator::Application.routes.draw do
-  
-  resources :contact_us,:only=>[:new,:create]
 
+  resources :contact_us,:only=>[:new,:create]
 
   match '/:id' => 'invites#referral', :constraints => {:id => /[a-zA-Z]{3}[0-9]{3}/}
 
   resources :invites,:only=>[:create] do
     member do
-      get 'referral'      
+      get 'referral'
     end
-  end  
+  end
 
   resources :sites, :only=>[:index,:edit,:update]   do
     member do
       get 'view'
-    end  
+    end
     resources :invites,:only=>[:index]
-  end 
-
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: "sessions" }
 
@@ -28,26 +26,26 @@ LaunchGator::Application.routes.draw do
   resources :users, :only => [:index] do
     collection do
       get 'home'
-    end    
-    
+    end
+
   end
 
-  match 'check_user' => 'users#check_user', :as => :check_user
-  match 'terms'=>'pages#terms',:as=>:terms
-  match 'contact' => 'contact_us#new',:as=>:contact
-  match 'about' => 'pages#about', :as => :about
-  match 'terms'=>'pages#terms',:as=>:terms
-  match 'privacy_policy'=>'pages#privacy_policy',:as=>:privacy_policy
-    
+  post 'check_user' => 'users#check_user', :as => :check_user
+  get 'terms'=>'pages#terms',:as=>:terms
+  get 'contact' => 'contact_us#new',:as=>:contact
+  get 'about' => 'pages#about', :as => :about
+  get 'terms'=>'pages#terms',:as=>:terms
+  get 'privacy_policy'=>'pages#privacy_policy',:as=>:privacy_policy
+
   match 'auth/failure', to: redirect('/')
-  
+
   root :to => 'users#home'
 
   constraints(Subdomain) do
     root :to => 'sites#view'
   end
-  
-  
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

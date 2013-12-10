@@ -1,0 +1,35 @@
+<% if Rails.env.production? %>
+
+  <!-- Start of Interakt Script -->
+
+  <% if current_user %>
+    <%# Interakt script %>
+    <script>
+      window.mySettings = {
+      // TODO: The current logged in user's email address.
+      email: '<%= current_user.email %>',
+      name: '<%= current_user.full_name %>',
+      sign_in_count: '<%= current_user.sign_in_count %>',
+      site_name: '<%= current_user.site.name %>',
+      site_url: '<%= current_user.site.url %>',
+      last_sign_in_at: '<%= current_user.last_sign_in_at %>',
+      last_sign_in_ip: '<%= current_user.last_sign_in_ip %>',
+      // TODO: The current logged in user's sign-up date.
+      created_at: '<%= current_user.created_at %>',
+      app_id: 'interakt_app_id'
+      // Sending Custom Hash with unique_id
+      };
+    </script>
+  <% end %>
+
+    <script>
+      (function() {
+      var interakt = document.createElement('script');
+      interakt.type = 'text/javascript'; interakt.async = true;
+      interakt.src = "https://interakt.co/interakt/interakt_app_id.js"
+      var scrpt = document.getElementsByTagName('script')[0];
+      scrpt.parentNode.insertBefore(interakt, scrpt);
+      })()
+    </script>
+
+<% end %>

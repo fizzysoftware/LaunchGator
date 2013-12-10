@@ -6,11 +6,11 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
 		<![endif]-->
 		<link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+		<link href='//fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
-		<%= render 'layouts/facebook_meta_tags' %>	
+		<%= render 'layouts/facebook_meta_tags' %>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript">
 			$(document).ready(function(){
@@ -40,27 +40,31 @@
 
 	</head>
 	<body>
+
 		<!-- Kiss Insights Starts-->
-		<script type="text/javascript">var _kiq = _kiq || [];</script>
-		<script type="text/javascript" src="//s3.amazonaws.com/ki.js/22616/8OJ.js" async="true"></script>
+		<!--  <%# if params[:controller] == "users" and params[:action] == "home" and @site.id == 1 %>
+			<script type="text/javascript">var _kiq = _kiq || [];</script>
+			<script type="text/javascript" src="//s3.amazonaws.com/ki.js/22616/8OJ.js" async="true"></script>
+		<%# end %>
+ -->
 		<!-- Kiss Insights Starts-->
-		
-		<%= render "layouts/header" %>	
-		
+
+		<%= render "layouts/header" %>
+
 		<div class="launchbody">
 			<% if params[:controller] == "users" && params[:action] == "home" && @site.id.to_i != 1 %>
-				<div id="wrapper" class="<%= @site.box_alignment %>" style="background-color:<%= @site.box_color %>!important">		
+				<div id="wrapper" class="<%= @site.box_alignment %>" style="background-color:<%= @site.box_color %>!important">
 			<% elsif (params[:controller] == "invites" ||params[:controller] == "sites" || params[:controller] == "users") and params[:action] == "index" %>
-				<div id="wrapper" class="sites_invite">	
+				<div id="wrapper" class="sites_invite">
 			<% elsif params[:controller] == "sites" and (params[:action] == "edit" || params[:action] == 'update') %>
 				<div>
 			<% else %>
-				<div id="wrapper" >	
+				<div id="wrapper" >
 			<% end %>
 			<% if flash[:notice] %>
 				<div id='notice'><%= flash[:notice].html_safe %></div>
 			<% end %>
-             		
+
 			<% if flash[:error] %>
 				<div id='error'><%= flash[:error].html_safe %></div>
 			<% end %>
@@ -68,21 +72,23 @@
 			<%= yield %>
 			</div>
 
-			<% if params[:controller] == "users" and params[:action] == "home" %>
-				<%= render "layouts/features" %>	
+			<% if params[:controller] == "users" and params[:action] == "home" and @site.id == 1 %>
+				<%= render "layouts/features" %>
 			<% end %>
 		</div>
 
 		<script>
 			$(function(){
 				$( "#site_wrapper , #site_builder").draggable();
-				
+
 			});
 		</script>
 
 		<% if (@site.id == 1 || (params[:action] != 'home' and @site.id == 1 )) && (@site.id == 1 && params[:action] != 'edit') %>
-			<%= render "layouts/footer" %>	
-		<% end %>	
 
+			<%= render "layouts/footer" %>
+
+		<% end %>
+		<%= render "layouts/service_codes" if !(params[:controller] == "users" and params[:action] == "home" and @site.id != 1) %>
 	</body>
 </html>

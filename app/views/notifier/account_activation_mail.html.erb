@@ -1,30 +1,26 @@
-<body>
-<table width="600" border="0" align="center" cellpadding="0" cellspacing="0" style="border:1px solid #f1f1f1;font-family: Arial, Helvetica, sans-serif">
-  <tr>
-    <th style="border-bottom:1px solid #ccc;border-right:1px solid #F1F1F1;width: 250px;height: 100px;" align="center"><img src="http://launch.deskgator.com/images/emailogo.png" width="210" height="50" alt="Launch Gator Logo"></th>
-    <th colspan="2"height="100" scope="col" style="border-bottom:1px solid #ccc;color:#666;">Create awesome launch pages!</th>
-  
-  </tr>
-  <tr>
-    <td colspan="2" style="padding:20px">
-  
-    <p style="font-size:14px">Hi <%= @recipient.full_name %>,
-      <br/>
-      <br/>
-    <br/><br/>
-    To complete the sign-up process, please click the link below:<br/><br/>
-    <%= url_for(activate_url(:code => @recipient.activation_code)) %>
-    <br/><br/>
-      <br/>
-      <br/>
-      Cheers!!
-      <br/>
-      LaunchGator Team
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" style="padding:20px;border-top:1px solid #ccc;font-size:12px;">
-	<strong>P.S.</strong> - Please mark this email as not spam (unless our magic worked and it landed in your inbox) and add us to your contacts.</td>
-  </tr>
-</table>
-</body>
+<table style="width: 600px;margin: 10px auto;padding: 0;border: none;border-spacing: 0;border-collapse: collapse;font-family:'Helvetica', 'arial', sans-serif;font-size:18px; color: #333;font-weight:300;" align="center">
+	<tbody>
+		<tr>
+			<td style="background:#fff;border:1px solid #f5f5f5;border-bottom: 2px solid #c03;padding: 30px 20px;margin: 0;font-size: 24px;font-weight: 700;">
+				<%= link_to root_path do %>
+					<img src="http://launch.deskgator.com/assets/emailogo.png" width="210" height="50" alt="Launch Gator Logo">
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td style="background:#fafafa;padding: 20px;margin: 0;border:1px solid #f5f5f5;">
+				<h1 style="font-size: 18px;">Hi <%= @recipient.full_name %></h1>
+				<p style="font-size: 16px;color: #444;line-height:24px;font-weight: 300;">Your account has been created successfully, you just need to validate your email. To validate your email use the link below.</p>
+				<%= url_for(activate_url(:code => @recipient.activation_code)), style: 'display: inline-block;padding: 10px 15px; background: #c03;text-decoration:none' %>
+				<p style="font-size: 16px;color: #444;font-weight: 300;"><strong>Cheers!</strong><br>
+					LaunchGator Team
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background:#f5f5f5;border: none;padding: 15px;margin: 0;border:1px solid #eee;">
+				<p style="font-size: 12px;color: #666;font-weight: 300;"><strong>LaunchGator</strong> has sent this e-mail to you because it was necessary or you opted for this. If you dont want to receive these emails please let us know.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>		

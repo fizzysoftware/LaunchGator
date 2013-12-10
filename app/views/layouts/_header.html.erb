@@ -14,7 +14,7 @@
 		<!-- Main Navigation -->
 		<ul class="mainnav">
 			<% if !user_signed_in? %>	
-				<li><%= link_to "Login", new_user_session_path %></li>
+				<li><%= link_to "Log In", new_user_session_path %></li>
 				<li><%= link_to "Sign Up", new_user_registration_path,:class => "signupbtn" %></li>
 			<% else %>
 				<li>
@@ -30,9 +30,9 @@
 		</ul>
 		<!-- Main Navigation Ends-->
 	</div>
-	<div class ="fork">
-		<%= link_to image_tag('fork.png'), '#' %>
-	</div>
+	<!-- <div class ="fork">
+		<%= link_to image_tag('fork.png'), 'https://github.com/fizzysoftware/LaunchGator',:target => '_blank' %>
+	</div> -->
 	<!-- Head Content Ends -->
 </div>
 <!-- Head Wrapper Ends-->

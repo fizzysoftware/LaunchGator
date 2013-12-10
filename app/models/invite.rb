@@ -1,9 +1,11 @@
 class Invite < ActiveRecord::Base
   attr_accessible :cookie, :email, :inviter_id, :invites_count, :short_url, :site_id, :unique_code, :views_count
 
-  has_many :referrals, :class_name=>"Invite",:foreign_key=>"inviter_id"
+  has_many :referrals, :class_name=>"Invite",:foreign_key=>"inviter_id",
+    :dependent => :destroy
   belongs_to :site
   belongs_to :referee, :class_name=>"Invite",:foreign_key=>"inviter_id", :counter_cache=>true
+
   after_create :invite_mail, :update_daily_report
 
   def self.get_invite_code_for_email_and_site(site_id,email,referral_code)
@@ -13,63 +15,49 @@ class Invite < ActiveRecord::Base
       invite = Invite.new(:email=>email,:site_id=>site_id)
       invite.unique_code = get_unique_code
       invite.inviter_id = referee.id if referee
-      invite.cookie =  User.random_string  
+      invite.cookie =  User.random_string
       invite.short_url = Invite.unique_url_generator(invite)
       invite.save
-    end  
+    end
     return invite
-  end 
-
+  end
 
   def self.get_site(code)
     referee = Invite.find_by_unique_code(code)
     return referee
-  end  
-
+  end
 
   def invite_mail
-    Notifier.invite_mail_sent(self,self.site).deliver   
-  end    
+    Notifier.invite_mail_sent(self,self.site).deliver
+  end
 
   def self.unique_url_generator(invite)
     unique_url = invite.site.url.to_s + "/" + invite.unique_code
     short_url =  unique_url
     return short_url
-  end  
-
-
-  def self.random_string_three_chars
-    #generate a random password consisting of strings and digits
-    chars = ("a".."z").to_a + ("A".."Z").to_a
-    newpass = ""
-    1.upto(3) { |i| newpass << chars[rand(chars.size-1)] }
-    return newpass
-  end
-
-
-  def self.random_string_three_integers
-    #generate a random password consisting of strings and digits
-    chars =  ("0".."9").to_a
-    newpass = ""
-    1.upto(3) { |i| newpass << chars[rand(chars.size-1)] }
-    return newpass
   end
 
   def self.get_unique_code
-    unique_code = random_string_three_chars + random_string_three_integers.to_s
+    unique_code = User.random_string
     while Invite.find_by_unique_code(unique_code)
       get_unique_code
     end
-    return unique_code  
+    return unique_code
   end
-  
+
+  def update_unique_code
+    self.unique_code = self.class.get_unique_code
+    self.short_url = site.url.to_s + "/" + unique_code
+    self.save
+  end
+
   def update_daily_report
-     DailyReport.daily_sign_up_counter(self.site_id)
+    DailyReport.daily_sign_up_counter(self.site_id)
   end
 
   def inviter_email
     if self.inviter_id.blank?
-      "Direct Referral "
+      "Direct Signup "
     else
       Invite.find(self.inviter_id).email
     end
@@ -83,3 +71,21 @@ class Invite < ActiveRecord::Base
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: invites
+#
+#  id            :integer          not null, primary key
+#  email         :string(255)
+#  site_id       :integer
+#  unique_code   :string(255)
+#  invites_count :integer          default(0)
+#  inviter_id    :integer
+#  cookie        :string(255)
+#  short_url     :string(255)
+#  views_count   :integer          default(0)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+

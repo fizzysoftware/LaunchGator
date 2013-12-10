@@ -9,7 +9,7 @@
 	<h1 class="largeheader" style="color:<%= @site.name_color %>!important">
 		<%=  @site.name  %>
 	</h1>
-	<% end %>  
+	<% end %>
 
 	<p class="tagline" style="color:<%= @site.tagline_color %>!important">
 		<%= @site.tagline %>
@@ -18,7 +18,7 @@
 </p>
 
 <div id="welcome_form" >
-	<p class="site_description" style="color:<%= @site.description_color %>!important"> 
+	<p class="site_description" style="color:<%= @site.description_color %>!important">
 		<%= @site.description %>
 	</p>
 	<p align="center" class="punchline" style="color:<%= @site.description_color %>">
@@ -57,7 +57,7 @@
 			<strong>
 				Live Stats
 			</strong>
-			<%= @visited.views_count %> Views,  
+			<%= @visited.views_count %> Views,
 			<%= @visited.invites_count %> Signups
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 	</div>
 	<br/>
 	<br/>
-	<div>	
+	<div>
 		<p style="font-size: 15px;text-align: center;">To share with your friends, click 'Recommend' and 'Tweet':</p>
 		<div id="twitter-like" class="clear" style="width:150px;float:left;margin-left:50px;margin-top:20px;">
 			<a href="http://twitter.com/share" class="twitter-share-button" data-url="<%= @site.url %>" data-text="<%= @site.twitter_message %>" data-count="horizontal" data-via="<%= @site.twitter %>">Tweet</a>
@@ -75,8 +75,8 @@
 		</div>
 
 		<div id="facebook-like" style="margin-top:20px;">
-			<iframe src="http://www.facebook.com/plugins/like.php?href=<%= @site.url %>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden;  width:95px; height:30px;" allowTransparency="true"></iframe> 
-		</div>	
+			<iframe src="http://www.facebook.com/plugins/like.php?href=<%= @site.url %>&amp;layout=standard&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;font=arial&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden;  width:95px; height:30px;" allowTransparency="true"></iframe>
+		</div>
 	</div>
 
 	<div class="<%= 'hide' if @visited.nil? %>" id='unique_code' style="margin-top:5px;">
@@ -84,7 +84,7 @@
 		<span>Or copy and paste the following link to share wherever you want!</span>
 		<br/><br/>
 	</div>
-	<div>	
+	<div>
 		<input type="text" id="unique_code_textbox" class="home_page_text_box_1" value="<%= @site.url %>"/>
 	</div>
 </div>

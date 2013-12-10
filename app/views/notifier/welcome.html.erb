@@ -1,13 +1,31 @@
-<h1 style="font-size: 18px;">Hi <%= @recipient.full_name %>,</h1>
-<p style="font-size: 14px;color: #444;font-weight: 300;line-height: 18px;margin-bottom: 10px;">
-	Welcome to launch_gator!
-</p>
-<p style="font-size: 14px;color: #444;font-weight: 300;line-height: 18px;margin-bottom: 10px;">
-Your account has been created, please go ahead and start sending physical and virtual gifts to your loved ones.
-</p>
-<p style="font-size: 14px;color: #444;font-weight: 300;line-height: 18px;margin-bottom: 10px;">
-<% unless @random_password.blank? %>
-	Your Password is <strong><%= @random_password %></strong><br/>
-	Please change your password when you login!
-<% end %>
-</p>
+<table style="width: 600px;margin: 10px auto;padding: 0;border: none;border-spacing: 0;border-collapse: collapse;font-family:'Helvetica', 'arial', sans-serif;font-size:18px; color: #333;font-weight:300;" align="center">
+	<tbody>
+		<tr>
+			<td style="background:#fff;border:1px solid #f5f5f5;border-bottom: 2px solid #c03;padding: 30px 20px;margin: 0;font-size: 24px;font-weight: 700;">
+				<%= link_to root_path do %>
+				<img src="http://launch.deskgator.com/images/emailogo.png" width="210" height="50" alt="Launch Gator Logo">
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td style="background:#fafafa;padding: 20px;margin: 0;border:1px solid #f5f5f5;">
+				<h1 style="font-size: 18px;">Hi <%= @recipient.full_name %></h1>
+				<p style="font-size: 16px;color: #444;line-height:24px;font-weight: 300;">Your account has been created, please go ahead and create a viral launching soon page for your website.</p>
+				<p style="font-size: 16px;color: #444;line-height:24px;font-weight: 300;"><% unless @random_password.blank? %>
+				Your Password is <strong><%= @random_password %></strong><br/>
+				Please change your password when you login!
+				<% end %>
+				</p>
+				<%= link_to "View Account", root_path, style: 'display: inline-block;padding: 10px 15px; background: #c03;text-decoration:none; font-weight:700;color: #fff' %>
+				<p style="font-size: 16px;color: #444;font-weight: 300;"><strong>Cheers!</strong><br>
+					LaunchGator Team
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="background:#f5f5f5;border: none;padding: 15px;margin: 0;border:1px solid #eee;">
+				<p style="font-size: 12px;color: #666;font-weight: 300;"><strong>LaunchGator</strong> has sent this e-mail to you because it was necessary or you opted for this. If you dont want to receive these emails please let us know.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>		

@@ -5,5 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-AdminUser.create!(:email => 'sudhanshu@fizzysoftware.com', :password => 'testing', :password_confirmation => 'testing') 
-AdminUser.create!(:email => 'mohit@fizzysoftware.com', :password => 'testing', :password_confirmation => 'testing') 
+AdminUser.create!(:email => 'user@fizzysoftware.com', :password => 'testing', :password_confirmation => 'testing')
+
+user = User.new(:email => 'user@gmail.com', :password => 'testing', :account_type => "super_admin", :full_name => 'Sudhanshu Aggarwal')
+user.save(:validate=>false)
+site = Site.new(:user_id => 1 , :email=>'user@gmail.com', :name=>'Launchdaddy', :url => 'http://www.launchgator.com', :tagline => 'Create your viral page in minutes', :description => 'Create your viral page in minutes', :twitter => 'launchgator')
+site.save

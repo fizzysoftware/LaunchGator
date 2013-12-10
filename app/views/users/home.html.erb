@@ -19,7 +19,7 @@
 	<div class="clear" id="form">
 		<%= form_for @user, :as => :user , :url => check_user_path do |f| %>
 			<%= f.text_field :email ,:class=>"txt_small home_email", :placeholder=>'yourname@yourmail.com' %>
-			 <%= hidden_field_tag 'home_page', 'home_page' %> 	    
+			 <%= hidden_field_tag 'home_page', 'home_page' %>
 			<%= submit_tag "Go" ,:class => "greenbutton" %>
 		<% end %>
 	</div>
@@ -29,7 +29,7 @@
 
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
-	var initialText = "your@email.com";
+	var initialText = "yourname@yourmail.com";
 	$('#invite_email').focus(function(){
 		if( $(this).val()==initialText){
 			$(this).val("");
@@ -54,7 +54,7 @@ $('#notify_me').click(function() {
 		hasError = true;
 	}
 
-	else if(!emailReg.test(emailaddressVal) || emailaddressVal == 'your@email.com') {
+	else if(!emailReg.test(emailaddressVal) || emailaddressVal == 'yourname@yourmail.com') {
 		$("#error_message").fadeIn();
 		$("#error_message").html('Enter a valid email address.');
 		hasError = true;
@@ -68,7 +68,7 @@ $('#notify_me').click(function() {
 });
 function submit_email()
 {
-	$.post("/invites", { email: $('#invite_email').val() , site_id: $('#site').val() ,referral_code: $('#referral_code').val() 
+	$.post("/invites", { email: $('#invite_email').val() , site_id: $('#site').val() ,referral_code: $('#referral_code').val()
 }, function(response){
 	$('#welcome_form').hide();
 	$('#social_networks').show();

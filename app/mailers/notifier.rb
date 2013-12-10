@@ -1,37 +1,33 @@
 class Notifier < ActionMailer::Base
-  default :from => "LaunchGator <support@launch.deskgator.com>"
+  default :from => "LaunchGator <support@deskgator.com>"
 
   # Default from not working. Specified individually for every mail. Mail was being sent from pintile.
 
   def account_activation_mail(recipient)
-    from = "LaunchGator <support@launch.deskgator.com>"
     @recipient = recipient
-    mail(:from => from ,:to => @recipient.email, :subject => "LaunchGator - Activate your Account")
+    mail(:to => @recipient.email, :subject => "LaunchGator - Activate your Account")
   end
 
   def welcome(recipient)
-    from = "LaunchGator <support@launch.deskgator.com>"
     @recipient = recipient
-    mail(:from => from ,:to => @recipient.email, :subject => "Welcome to LaunchGator")
+    mail(:to => @recipient.email, :subject => "Welcome to LaunchGator")
   end
 
   def password_recovery(recipient)
-    from = "LaunchGator <support@launch.deskgator.com>"
     @recipient = recipient
-    mail(:from => from ,:to => recipient.email, :subject => "LaunchGator - Reset your Password")
+    mail(:to => recipient.email, :subject => "LaunchGator - Reset your Password")
   end
 
   def contact_us_mail_to_admin(contact_us)
-    from = "LaunchGator <support@launch.deskgator.com>"
     @contact_us = contact_us
-    mail(:from => from ,:to => 'sudhanshu@fizzysoftware.com' , :subject => "LaunchGator - Contact Form")
+    mail(:to => 'sudhanshu@fizzysoftware.com' , :subject => "LaunchGator - Contact Form", :reply_to => @contact_us.email)
   end
 
   def invite_mail_sent(recipient,site)
     @recipient = recipient
     @site = recipient.site
 
-    p @recipient
+    @recipient
 
     url = Domainatrix.parse(@site.url)
 
@@ -51,24 +47,22 @@ class Notifier < ActionMailer::Base
       subject = @site.email_subject
     end
 
-    mail(:from => from , :to => @recipient.email, :subject => subject) 
+    mail(:from => from , :to => @recipient.email, :subject => subject)
   end
 
 
   def send_a_record_entry_notification_mail(site)
-    from = "LaunchGator <support@launch.deskgator.com>"
     @recipient = site.user
     @site = site
-    mail(:from => from ,:to => @recipient.email, :subject => "LaunchGator - Just one more step to get started")
-  end  
+    mail(:to => @recipient.email, :subject => "LaunchGator - Just one more step to get started")
+  end
 
   def send_daily_report_mail(daily_report)
-    from = "LaunchGator <support@launch.deskgator.com>"
     @daily_report = daily_report
     @site = @daily_report.site
     @recipient = @site.user
     subject = @site.name.to_s + "- Daily Report"
-    mail(:from => from ,:to => @recipient.email, :subject => subject )
+    mail(:to => @recipient.email, :subject => subject )
   end
 
 end
