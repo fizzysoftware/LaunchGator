@@ -18,16 +18,47 @@
 
 
 $(function(){
-	$('#notice').delay(3000).slideUp(200);
-	$('#error').delay(3000).slideUp(200);
-	$('#bodywrap').css({'min-height': $(window).height() - 160});
+  $('#notice').delay(3000).slideUp(200);
+  $('#error').delay(3000).slideUp(200);
+  $('#bodywrap').css({'min-height': $(window).height() - 160});
+  $('#arecord').click(function(){
+    $('#arecord').addClass('active');
+    $('#arecord_tab').removeClass('hide');
+    $('#cname, #other').removeClass('active');
+    $('#cname_tab, #other_tab').addClass('hide');
+  });
+  $('#cname').click(function(){
+    $('#cname').addClass('active');
+    $('#cname_tab').removeClass('hide');
+    $('#arecord, #other').removeClass('active');
+    $('#arecord_tab, #other_tab').addClass('hide');
+  });
+  $('#other').click(function(){
+    $('#other').addClass('active');
+    $('#other_tab').removeClass('hide');
+    $('#arecord, #cname').removeClass('active');
+    $('#arecord_tab, #cname_tab').addClass('hide');
+  });
 });
+
+$(document).on('click', '.remove_fields', function(event){
+  $(this).prev('input[type=hidden]').val('1');
+  $(this).closest('fieldset').hide();
+  event.preventDefault();
+});
+
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).parent().before(content.replace(regexp, new_id));
+}
 
 
 // $(document).ready(function () {
 //       $('.dropdown-toggle').dropdown();
 // });
- 
+
 // jQuery(document).ready(function() {
 //   jQuery("abbr.timeago").timeago();
 // });

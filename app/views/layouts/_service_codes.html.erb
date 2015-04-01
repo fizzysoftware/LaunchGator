@@ -12,6 +12,7 @@
       sign_in_count: '<%= current_user.sign_in_count %>',
       site_name: '<%= current_user.site.name %>',
       site_url: '<%= current_user.site.url %>',
+      cname_checked: '<%= current_user.site.domain_propagated %>',
       last_sign_in_at: '<%= current_user.last_sign_in_at %>',
       last_sign_in_ip: '<%= current_user.last_sign_in_ip %>',
       // TODO: The current logged in user's sign-up date.
@@ -33,3 +34,20 @@
     </script>
 
 <% end %>
+
+<!-- Google Analytics Starts-->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'RANDOM-888999777-11']);
+  _gaq.push(['_setDomainName', 'yourdomain.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- Google Analytics Ends-->

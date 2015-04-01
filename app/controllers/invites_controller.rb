@@ -5,10 +5,11 @@ class InvitesController < ApplicationController
 
   def index
     @invites = @site.invites.paginate(:page => params[:page], :per_page=> 15)
+    @invites_for_xls = @site.invites
     @daily_reports = DailyReport.where('site_id = ?',params[:site_id]).order("created_at ASC")
     respond_to do |format|
       format.html # index.html.erb
-      format.xls
+      format.xls {render xls: @invites_for_xls}
     end
   end
 

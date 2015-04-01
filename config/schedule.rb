@@ -18,9 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+set :output, {:error => 'error.log', :standard => 'cron.log'}
 
-
-
-every 1.day, :at => '11:30 pm' do
-   runner "User.send_reminders"
+every 1.day, :at => '1:00 am' do
+  runner "Site.daily_stats"
 end

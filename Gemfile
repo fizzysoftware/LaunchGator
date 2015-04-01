@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 
@@ -12,18 +12,18 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-#gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'jquery-rails'
 gem 'json'
 gem 'smusher'
 gem 'will_paginate'
 gem 'daemons'
 gem 'delayed_job_active_record'
-gem 'whenever'
+gem 'whenever', '0.8.4', require: false
 gem "delayed_job_web"
 gem 'paperclip'
 gem 'rmagick'
-# gem 'libv8', '~> 3.11.8'
+gem 'libv8'
+
 gem 'remotipart', '~> 1.0'
 gem 'execjs'
 gem 'activeadmin'
@@ -32,7 +32,7 @@ gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 gem 'capistrano'
-gem 'rvm-capistrano'
+gem 'rvm-capistrano', require: false
 gem 'devise'
 gem 'devise-encryptable'
 gem 'chronic'
@@ -47,6 +47,7 @@ gem 'albino'
 gem 'thin'
 gem 'airbrake'
 gem 'interakt_rails'
+gem 'paperclip-compression'
 
 group :production do
   gem "pg"
@@ -59,15 +60,14 @@ group :development, :test do
   gem 'annotate'
   gem 'pry-doc'
   gem 'hirb'
-  gem 'localtunnel'
   gem "binding_of_caller"
   gem 'meta_request','0.2.1'
   gem "better_errors"
   gem 'lol_dba'
-  gem 'thin'
   gem 'quiet_assets'
   gem 'bullet'
   gem 'railroady'
   gem 'debugger'
   gem 'rails-footnotes', '>= 3.7.5.rc4'
+  gem 'xray-rails'
 end

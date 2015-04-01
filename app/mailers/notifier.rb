@@ -20,14 +20,12 @@ class Notifier < ActionMailer::Base
 
   def contact_us_mail_to_admin(contact_us)
     @contact_us = contact_us
-    mail(:to => 'sudhanshu@fizzysoftware.com' , :subject => "LaunchGator - Contact Form", :reply_to => @contact_us.email)
+    mail(to: 'admin@yourdomain.com' , subject: "LaunchGator - Contact Form", :reply_to => @contact_us.email)
   end
 
   def invite_mail_sent(recipient,site)
     @recipient = recipient
     @site = recipient.site
-
-    @recipient
 
     url = Domainatrix.parse(@site.url)
 
@@ -63,6 +61,13 @@ class Notifier < ActionMailer::Base
     @recipient = @site.user
     subject = @site.name.to_s + "- Daily Report"
     mail(:to => @recipient.email, :subject => subject )
+  end
+
+  def daily_stats(today_invites, site)
+    @today_invites = today_invites
+    @user = site.user
+    @site = site
+    mail(:to => @user.email, :subject => "LaunchGator - Daily Report")
   end
 
 end

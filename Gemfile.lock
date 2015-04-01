@@ -1,5 +1,5 @@
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (3.2.11)
       actionpack (= 3.2.11)
@@ -152,10 +152,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     libv8 (3.16.14.3)
-    localtunnel (0.3)
-      json (>= 1.2.4)
-      net-ssh (>= 2.0.22)
-      net-ssh-gateway (>= 1.0.1)
     lol_dba (1.4.3)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -211,12 +207,17 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
+    os (0.9.6)
     paperclip (3.4.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
+    paperclip-compression (0.3.4)
+      os (~> 0.9.6)
+      paperclip (~> 3.3)
+      ruby-imagespec (~> 0.3.1)
     pg (0.15.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
@@ -271,6 +272,7 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.2)
+    ruby-imagespec (0.3.1)
     rvm-capistrano (1.2.7)
       capistrano (>= 2.0.0)
     sass (3.2.5)
@@ -321,10 +323,13 @@ GEM
       macaddr (~> 1.0)
     warden (1.2.1)
       rack (>= 1.0)
-    whenever (0.8.2)
+    whenever (0.8.4)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
     will_paginate (3.0.4)
+    xray-rails (0.1.12)
+      coffee-rails
+      rails (>= 3.1.0)
     yard (0.8.4)
 
 PLATFORMS
@@ -358,7 +363,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   json
-  localtunnel
+  libv8
   lol_dba
   mailcatcher
   meta_request (= 0.2.1)
@@ -367,6 +372,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook
   paperclip
+  paperclip-compression
   pg
   pry
   pry-doc
@@ -385,5 +391,6 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   uuid
-  whenever
+  whenever (= 0.8.4)
   will_paginate
+  xray-rails

@@ -11,3 +11,4 @@ log/*.log
 tmp/**/*
 tags
 .sass-cache
+*.log

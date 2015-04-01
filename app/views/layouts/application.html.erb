@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<title><%= @title %></title>
 		<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
@@ -10,8 +10,8 @@
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
-		<%= render 'layouts/facebook_meta_tags' %>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<%= render 'layouts/facebook_meta_tags' if @site.id == 1 %>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("body").ezBgResize({
@@ -30,12 +30,12 @@
 		</script>
 
 
-		<% if params[:controller] == "sites" and params[:action] == 'view' %>
-			<% if !@site.image.id.nil? and !@site.image.logo.nil?%>
-				<meta property="og:image" content="<%= @site.image.logo.url(:medium) %>"/>
-			<% end %>
-			<meta property="og:description" content="<%= @site.description if @site.description %>"/>
-			<meta property="og:title" content="<%= @site.tagline if @site.tagline %>"/>
+		<% if (params[:controller] == "users" and params[:action] == "home" and @site.id != 1) %>
+		<% if (@site.image.present? and @site.image.id.present? and @site.image.logo.present?) %>
+		<meta property="og:image" content="<%= @site.image.logo.url(:medium) %>"/>
+		<% end %>
+		<meta property="og:description" content="<%= @site.description if @site.description.present? %>"/>
+		<meta property="og:title" content="<%= @site.tagline if @site.tagline.present? %>"/>
 		<% end  %>
 
 	</head>
@@ -46,49 +46,50 @@
 			<script type="text/javascript">var _kiq = _kiq || [];</script>
 			<script type="text/javascript" src="//s3.amazonaws.com/ki.js/22616/8OJ.js" async="true"></script>
 		<%# end %>
- -->
-		<!-- Kiss Insights Starts-->
+	-->
+	<!-- Kiss Insights Starts-->
 
-		<%= render "layouts/header" %>
+	<%= render "layouts/header" %>
 
-		<div class="launchbody">
-			<% if params[:controller] == "users" && params[:action] == "home" && @site.id.to_i != 1 %>
-				<div id="wrapper" class="<%= @site.box_alignment %>" style="background-color:<%= @site.box_color %>!important">
+	<div class="launchbody">
+		<% if params[:controller] == "users" && params[:action] == "home" && @site.id.to_i != 1 %>
+		<div id="wrapper" class="<%= @site.box_alignment %>" style="background-color:<%= @site.box_color %>!important">
 			<% elsif (params[:controller] == "invites" ||params[:controller] == "sites" || params[:controller] == "users") and params[:action] == "index" %>
-				<div id="wrapper" class="sites_invite">
-			<% elsif params[:controller] == "sites" and (params[:action] == "edit" || params[:action] == 'update') %>
+			<div id="wrapper" class="sites_invite">
+				<% elsif params[:controller] == "sites" and (params[:action] == "edit" || params[:action] == 'update') %>
 				<div>
-			<% else %>
-				<div id="wrapper" >
-			<% end %>
-			<% if flash[:notice] %>
-				<div id='notice'><%= flash[:notice].html_safe %></div>
-			<% end %>
+					<% else %>
+					<div id="wrapper" >
+						<% end %>
+						<% if flash[:notice] %>
+						<div id='notice'><%= flash[:notice].html_safe %></div>
+						<% end %>
 
-			<% if flash[:error] %>
-				<div id='error'><%= flash[:error].html_safe %></div>
-			<% end %>
+						<% if flash[:error] %>
+						<div id='error'><%= flash[:error].html_safe %></div>
+						<% end %>
 
-			<%= yield %>
-			</div>
+						<%= yield %>
+					</div>
 
-			<% if params[:controller] == "users" and params[:action] == "home" and @site.id == 1 %>
-				<%= render "layouts/features" %>
-			<% end %>
-		</div>
+					<% if params[:controller] == "users" and params[:action] == "home" and @site.id == 1 %>
+					<%= render "layouts/features" %>
+					<% end %>
+				</div>
 
-		<script>
-			$(function(){
-				$( "#site_wrapper , #site_builder").draggable();
+				<script>
+					$(function(){
+						$( "#site_wrapper , #site_builder").draggable();
 
-			});
-		</script>
+					});
+				</script>
 
-		<% if (@site.id == 1 || (params[:action] != 'home' and @site.id == 1 )) && (@site.id == 1 && params[:action] != 'edit') %>
+				<% if (@site.id == 1 || (params[:action] != 'home' and @site.id == 1 )) && (@site.id == 1 && params[:action] != 'edit') %>
 
-			<%= render "layouts/footer" %>
+				<%= render "layouts/footer" %>
 
-		<% end %>
-		<%= render "layouts/service_codes" if !(params[:controller] == "users" and params[:action] == "home" and @site.id != 1) %>
-	</body>
-</html>
+				<% end %>
+				<%= render "layouts/analytics_codes" if (params[:controller] == "users" and params[:action] == "home" and @site.id != 1) %>
+				<%= render "layouts/service_codes" if !(params[:controller] == "users" and params[:action] == "home" and @site.id != 1) %>
+			</body>
+			</html>

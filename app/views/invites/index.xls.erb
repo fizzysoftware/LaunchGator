@@ -6,7 +6,7 @@
 		<th>Date</th>
 	</tr>
 
-	<% @invites.each_with_index do |invite,index| %>
+	<% @invites_for_xls.each_with_index do |invite,index| %>
 	<tr>
 		<td><%= index+1 %></td>
 		<td><%= invite.email %></td>

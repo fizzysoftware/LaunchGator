@@ -2,6 +2,7 @@ class SitesController < ApplicationController
   before_filter :authorize, :only=>[:edit, :update]
   before_filter :super_admin_acces, :only=>[:index]
   before_filter :validate_subdomain, :only=>[:view]
+  before_filter :sterilize_url, :only => [:update, :create]
 
   def index
     @sites = Site.paginate(:page => params[:page], :per_page=> 50)
@@ -36,11 +37,22 @@ class SitesController < ApplicationController
     @invite = Invite.new
   end
 
+  def check_domain_propagated
+    @site = current_user.site if current_user.present?
+    if @site.domain_mapped? == true
+      @site.update_attributes(:domain_propagated => 1, :state => 3)
+      redirect_to edit_site_path(@site), notice: "congratulations Your site is working now start sharing it and collect signup."
+    else
+      @site.update_attribute(:domain_propagated, 0)
+      redirect_to edit_site_path(@site), :flash => {:error => "Please check your cname setting is it pointing to host.deskgator.com"}
+    end
+  end
+
   private
 
   def authorize
     begin
-      @site = Site.find_by_id(params[:id])
+      @site = Site.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "This record does not exist."
       redirect_to(root_path)
@@ -71,6 +83,10 @@ class SitesController < ApplicationController
     else
       @site = Site.find(1)
     end
+  end
+
+  def sterilize_url
+    params[:site][:url] = params[:site][:url].chop  if params[:site][:url].last == "/"
   end
 
 end

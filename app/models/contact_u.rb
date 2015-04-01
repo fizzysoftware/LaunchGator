@@ -21,9 +21,9 @@ end
 #  name         :string(255)
 #  email        :string(255)
 #  comment      :text
+#  phone_number :string(255)
 #  subject      :string(255)
-#  phone_number :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 

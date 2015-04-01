@@ -1,16 +1,23 @@
-<!-- <p>You need to follow the following simple steps to get your site up and running.<br/> -->
-	<p><b>Set Up Your CNAME Records</b>
-	<br/><br/>
-	Below are instructions for updating the CNAME record for your domain.
-	<br/><br/>
-	Go to your registrar (or hosting provider if you have changed the nameservers to them), find your DNS settings and follow the instructions to point the CNAME record (sub-domain) for your domain to the following domain <b> host.deskgator.com </b><br/>
-	NOTE: You need to change your domain’s (or sub-domain’s) CNAME record, not its nameservers. And, you don’t need to forward or redirect anything, you only need to change the CNAME Record.<br/>
-	<!-- Verify that your domain name is pointing to <a href="http://launch.deskgator.com">launch.deskgator.com</a> by typing it into your browser. Once the changes have propagated, it will redirect you to <a href="http://launch.deskgator.com">launch.deskgator.com</a> if the site has not been activated yet. If the site has been activated, then your domain should point to your
-	<a href="http://launch.deskgator.com">LaunchGator</a> page. (Depending on your registrar, it can take a while for the A record to propagate.) -->
-	<br/><br/>
-	<b>Now What?</b>
-	<br/><br/>
-	After you know your site is functioning properly, start spreading the word! We helps amplify your message, but if you don't bring some traffic to it, there is nothing to amplify. You've got some work to do!
-	<br/><br/>
-	Get your friends to sign up and share it, but more importantly start sending it to people and blogs you know would be interested. Some of our users have had amazing results simply sending tweets to people and blogs to check their site out.
-</p>
+<h2>Set Up Your CNAME Records</h2>
+<p>Below are instructions for updating the CNAME record for your domain.<p>
+<ul class="simplelist">
+	<li>Go to your registrar (or hosting provider if you have changed the nameservers to them).</li>
+	<li>Find your DNS settings</li>
+	<li>Follow the instructions to point the CNAME record (sub-domain) for your domain.</li>
+	<li>Point the desired subdomain to <strong> host.deskgator.com</strong></li>
+</ul>
+
+<em><strong>NOTE:</strong> You need to change your domainâ€™s (or sub-domainâ€™s) CNAME record, not its nameservers. And, you donâ€™t need to forward or redirect anything, you only need to change the CNAME Record.</em>
+<h3>Now What?</h3>
+<p>After you know your site is functioning properly, start spreading the word! We helps amplify your message, but if you don't bring some traffic to it, there is nothing to amplify. You've got some work to do!</p>
+<p>Get your friends to sign up and share it, but more importantly start sending it to people and blogs you know would be interested. Some of our users have had amazing results simply sending tweets to people and blogs to check their site out.</p>
+<br>
+<div class="domainstatus">
+  <h6>Domain Status</h6>
+  <% if true %>
+    <h6 class="success">Propagated Successfully</h6>
+  <% else %>
+    <h6 class="failed">Propagation Pending</h6>
+  <% end %>
+  <%= link_to 'Test', check_domain_propagated_path, class: "checkstatus" %>
+</div>

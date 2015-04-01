@@ -1,14 +1,14 @@
 <p>
-	<%= f.label :google_analytics_code %>
+  <%= f.label :google_analytics_tracking_id %>
 </p>
 <p>
-	<%= f.text_area :google_analytics_code ,  :class=>"txt_small" %>
-	<span class="hint_1"> Google Analytics code</span>
+  <%= f.text_area :google_analytics_code ,  :class=>"txt_small", :placeholder=>"UA-XXXXXXXX-X" %>
+  <span class="hint_1"> Google Analytics code</span>
 </p>
 <p>
-	<%= f.label :address %>
+  <%= f.label :address %>
 </p>
 <p>
-	<%= f.text_area :address ,  :class=>"txt_small" %>
-	<span class="hint_1">Business address for SPAM compliance</span>
+  <%= f.text_area :address ,  :class=>"txt_small" %>
+  <span class="hint_1">Business address for SPAM compliance</span>
 </p>

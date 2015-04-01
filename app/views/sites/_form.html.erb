@@ -1,17 +1,17 @@
-<div id="site_wrapper"  style="background-color:<%= @site.box_color %>!important">	
+<div id="site_wrapper"  style="background-color:<%= @site.box_color %>!important">
 	<%= render 'site_view' %>
 </div>
 <div id="site_builder">
-	<h1>Site Builder<span id="close_modal">x</span></h1> 
+	<h1>Site Builder<span id="close_modal">x</span></h1>
 	<div id="tabs">
 		<ul>
-			<li><a href="#tabs-1" class="tabs-1">Basic</a></li>
-			<li><a href="#tabs-2" class="tabs-2">Background</a></li>
+			<li><a href="#tabs-1" class="tabs-1">Basics</a></li>
+			<li><a href="#tabs-2" class="tabs-2">Images</a></li>
 			<li><a href="#tabs-3" class="tabs-3">Sharing</a></li>
-			<li><a href="#tabs-4" class="tabs-4">Optional</a></li>
-			<li><a href="#tabs-5" class="tabs-5">Settings</a></li>
 			<li><a href="#tabs-6" class="tabs-6">Email</a></li>
 			<li><a href="#tabs-7" class="tabs-7">Colors</a></li>
+			<li><a href="#tabs-5" class="tabs-5">Domain</a></li>
+			<li><a href="#tabs-4" class="tabs-4">Optional</a></li>
 		</ul>
 		<%= form_for @site, :html => { :multipart => true } do |f| %>
 		<% if @site.errors.any? %>
@@ -24,15 +24,15 @@
 			</ul>
 		</div>
 		<% end %>
-		
+
 		<div id="tabs-1"><%= render 'tabs_1', :f => f %></div>
 		<div id="tabs-2"><%= render 'tabs_2', :f => f %></div>
 		<div id="tabs-3"><%= render 'tabs_3', :f => f %></div>
-		<div id="tabs-4"><%= render 'tabs_4', :f => f %></div>
-		<div id="tabs-5"><%= render 'tabs_5', :f => f %></div>
 		<div id="tabs-6"><%= render 'tabs_6', :f => f %></div>
 		<div id="tabs-7"><%= render 'tabs_7', :f => f %></div>
-		       	
+		<div id="tabs-5"><%= render 'tabs_5', :f => f %></div>
+		<div id="tabs-4"><%= render 'tabs_4', :f => f %></div>
+
 		<p>
 			<%= f.submit "Update",:class=>"greenbutton submitsite" %>
 		</p>
@@ -41,24 +41,24 @@
 </div>
 
 <script>
-$(function() {
+	$(function() {
 
-	$("#tabs").tabs();
+		$("#tabs").tabs();
 
-	$( "#site_description_color , #site_tagline_color, #site_name_color, #site_box_color").focus(function(){
-		$('.' + this.id).show();
-		$('.' + this.id).farbtastic(this);
+		$( "#site_description_color , #site_tagline_color, #site_name_color, #site_box_color").focus(function(){
+			$('.' + this.id).show();
+			$('.' + this.id).farbtastic(this);
+		});
+
+		$( "#site_description_color , #site_tagline_color, #site_name_color, #site_box_color").blur(function(){
+			$('.' + this.id).hide();
+		});
+		$( "#close_modal").live('click',function(){
+			$('#site_builder').hide();
+		});
+		$( "#open_modal").click(function(){
+			$('#site_builder').show();
+		});
+
 	});
-
-	$( "#site_description_color , #site_tagline_color, #site_name_color, #site_box_color").blur(function(){
-		$('.' + this.id).hide();
-	});
-	$( "#close_modal").live('click',function(){
-		$('#site_builder').hide();
-	});
-	$( "#open_modal").click(function(){
-		$('#site_builder').show();
-	}); 
-
-});
 </script>

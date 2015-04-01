@@ -37,6 +37,7 @@ LaunchGator::Application.routes.draw do
   get 'terms'=>'pages#terms',:as=>:terms
   get 'privacy_policy'=>'pages#privacy_policy',:as=>:privacy_policy
 
+  get 'check_domain_propagated' => 'sites#check_domain_propagated', :as=> :check_domain_propagated
   match 'auth/failure', to: redirect('/')
 
   root :to => 'users#home'

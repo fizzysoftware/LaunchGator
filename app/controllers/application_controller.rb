@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include UrlHelper
 
-  before_filter :set_background
+  before_filter :fetch_site_and_set_background
   before_filter :mailer_set_url_options
   helper :all
 
@@ -19,9 +19,8 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def set_background
-
-    if request.subdomain.to_s  != "launch" and request.subdomain.to_s != "" and request.subdomain.to_s != "launchgator"
+  def fetch_site_and_set_background
+    if ((request.domain.to_s != "deskgator.com") and (request.domain.to_s != "localhost"))
       # subdomain = request.subdomain.to_s.gsub('.launch','')
       begin
         # @site = Site.find_by_domain_name!(subdomain)
@@ -56,7 +55,7 @@ class ApplicationController < ActionController::Base
   end
 
   def super_admin_acces
-    unless current_user.account_type =='super_admin'
+    if current_user.nil? or current_user.account_type !='super_admin'
       redirect_to root_path
     end
   end

@@ -43,7 +43,7 @@ bundle install
 CREATE database config (sample config is in config/database.sample.yml)
 ```
 cp config/database_sample.yml config/database.yml
-# make the appropirate changes 
+# make the appropirate changes
 
 ```
 
@@ -84,6 +84,16 @@ Deploying
 ```bash
 cap production deploy:setup
 cap production deploy:cold
+```
+
+Starting DelayedJob
+--------------------
+
+  * Stop delayed job and then restart it
+
+```bash
+RAILS_ENV=production script/delayed_job stop
+RAILS_ENV=production script/delayed_job start
 ```
 
 Copyright
