@@ -1,2 +1,1 @@
-rvm_gemset_create_on_use_flag=1
-rvm gemset use launch_gator
+rvm use ruby-1.9.3@launchgator --create
