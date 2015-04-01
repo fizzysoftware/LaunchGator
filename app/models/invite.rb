@@ -28,7 +28,7 @@ class Invite < ActiveRecord::Base
   end
 
   def invite_mail
-    Notifier.invite_mail_sent(self,self.site).deliver
+    Notifier.delay.invite_mail_sent(self,self.site)
   end
 
   def self.unique_url_generator(invite)
