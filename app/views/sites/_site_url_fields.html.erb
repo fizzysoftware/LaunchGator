@@ -1,0 +1,6 @@
+<fieldset class=<%= active_or_inactive_domain(f.object) %>>
+  <%= f.label :url, "URL" %>
+  <%= f.text_field :url %>
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "X", "#", class: "remove_fields" %>
+</fieldset>
