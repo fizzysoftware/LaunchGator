@@ -12,3 +12,4 @@ tmp/**/*
 tags
 .sass-cache
 *.log
+.DS_Store

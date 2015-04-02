@@ -11,6 +11,15 @@
 			<%= link_to (image_tag "logo.png",  :class=>'logo' ) , new_site_path %>
 		<% end %>
 
+		<% if user_signed_in? %>
+			<div class="line">
+				<div class="fline" style="<%= (@site.state == 0 or @site.state == 1) ? 'width:0%' : @site.state == 2 ? 'width:50%' : 'width:100%'%>"></div>
+				<span class="cpoint pone <%= 'reached' if @site.state != 0 %>" data-info="Fill basic requirements to launch of the landing page"></span>
+				<span class="cpoint ptwo <%= 'reached' if @site.state.between?(2,3) %>" data-info="Change background images and logo of the page etc."></span>
+				<span class="cpoint pthree <%= 'reached' if @site.state == 3 %>" data-info="Point the cname records of your desired domain to host.deskgator.com"></span>
+			</div>
+		<% end %>
+
 		<!-- Main Navigation -->
 		<ul class="mainnav">
 			<% if !user_signed_in? %>

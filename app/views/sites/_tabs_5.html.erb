@@ -1,23 +1,70 @@
-<h2>Set Up Your CNAME Records</h2>
-<p>Below are instructions for updating the CNAME record for your domain.<p>
-<ul class="simplelist">
-	<li>Go to your registrar (or hosting provider if you have changed the nameservers to them).</li>
-	<li>Find your DNS settings</li>
-	<li>Follow the instructions to point the CNAME record (sub-domain) for your domain.</li>
-	<li>Point the desired subdomain to <strong> host.deskgator.com</strong></li>
+<p><%= f.label :url , "Primary URL" %></p>
+  <p><%= f.text_field :url ,  :class=>"txt_small" %><span class="hint_1">The URL with a subdomain for your page, i.e. http://signup.mydomain.com. </span></p>
+
+<ul class="integtype">
+  <li id="arecord" class="active">A Record</li>
+  <li id="cname">CNAME Record</li>
+  <li id="other">Secondary Domain</li>
 </ul>
 
-<em><strong>NOTE:</strong> You need to change your domainâ€™s (or sub-domainâ€™s) CNAME record, not its nameservers. And, you donâ€™t need to forward or redirect anything, you only need to change the CNAME Record.</em>
+<div id="arecord_tab">
+  <h2>Set Up Your A Records</h2>
+  <p>Below are instructions for updating the A Record for your domain.</p>
+  <ul class="simplelist">
+    <li>Go to your registrar (or hosting provider if you have changed the nameservers to them).</li>
+    <li>Find your DNS settings</li>
+    <li>Follow the instructions to point the A Record for your domain.</li>
+    <li>Point the A Record to <strong> 198.211.117.169</strong> IP Address.</li>
+    <li>Propagation of domain may take upto<strong> 24 - 48</strong> hours.</li>
+  </ul>
+  <em><strong>NOTE:</strong> You need to change your domain’s A Record, not its nameservers. And, you don’t need to forward or redirect anything, you only need to change the A Record.</em>
+  <div class="domainstatus">
+    <h6>Domain Status</h6>
+    <% if @site.domain_propagated == true %>
+    <h6 class="success">Propagated Successfully</h6>
+    <% else %>
+    <h6 class="failed">Propagation Pending</h6>
+    <% end %>
+    <%= link_to 'Test', check_domain_propagated_path, class: "checkstatus" %>
+  </div>
+</div>
+
+<div id="cname_tab" class="hide">
+  <h2>Set Up Your CNAME Record</h2>
+  <p>Below are instructions for updating the CNAME record for your domain.</p>
+  <ul class="simplelist">
+    <li>Go to your registrar (or hosting provider if you have changed the nameservers to them).</li>
+    <li>Find your DNS settings</li>
+    <li>Follow the instructions to point the CNAME record (sub-domain) for your domain.</li>
+    <li>Point the desired subdomain to <strong> host.deskgator.com</strong></li>
+    <li>Propagation of subdomain may take upto<strong> 24 - 48</strong> hours.</li>
+  </ul>
+  <em><strong>NOTE:</strong> You need to change your domain’s (or sub-domain’s) CNAME record, not its nameservers. And, you don’t need to forward or redirect anything, you only need to change the CNAME Record.</em>
+  <div class="domainstatus">
+    <h6>Domain Status</h6>
+    <% if @site.domain_propagated == true %>
+    <h6 class="success">Propagated Successfully</h6>
+    <% else %>
+    <h6 class="failed">Propagation Pending</h6>
+    <% end %>
+    <%= link_to 'Test', check_domain_propagated_path, class: "checkstatus" %>
+  </div>
+</div>
+
+<div id="other_tab" class="hide">
+  <h2>Set Up Secondary URL's</h2>
+  <p>This option lets you point other domains/url's to your launchgator page.</p>
+
+  <div class="suburls">
+    <%= f.fields_for :site_urls do |builder| %>
+    <%= render "site_url_fields", :f => builder %>
+    <% end %>
+    <p class="addbtn" ><%= link_to_add_fields "Add Secondary URL", f, :site_urls%></p>
+  </div>
+
+</div>
+
 <h3>Now What?</h3>
 <p>After you know your site is functioning properly, start spreading the word! We helps amplify your message, but if you don't bring some traffic to it, there is nothing to amplify. You've got some work to do!</p>
 <p>Get your friends to sign up and share it, but more importantly start sending it to people and blogs you know would be interested. Some of our users have had amazing results simply sending tweets to people and blogs to check their site out.</p>
 <br>
-<div class="domainstatus">
-  <h6>Domain Status</h6>
-  <% if true %>
-    <h6 class="success">Propagated Successfully</h6>
-  <% else %>
-    <h6 class="failed">Propagation Pending</h6>
-  <% end %>
-  <%= link_to 'Test', check_domain_propagated_path, class: "checkstatus" %>
-</div>
